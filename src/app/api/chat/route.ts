@@ -11,6 +11,11 @@ import {
 export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY as string;
   const chatCompletionEndpoint = process.env.CHAT_COMPLETION_ENDPOINT as string;
+  const azureHeader = {
+    ...(apiKey && new RegExp(/azure\.com/i).test(chatCompletionEndpoint)
+      ? { "api-key": apiKey }
+      : {}),
+  };
 
   const messages = (await req.json()) as ChatMessage[];
 
@@ -18,6 +23,7 @@ export async function POST(req: NextRequest) {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
+      ...azureHeader,
     },
     method: "POST",
     body: JSON.stringify({
@@ -56,7 +62,7 @@ export async function POST(req: NextRequest) {
           }
           try {
             const json = JSON.parse(data);
-            const text = json.choices[0].delta?.content || "";
+            const text = json.choices[0]?.delta?.content || "";
             if (counter < 2 && (text.match(/\n/) || []).length) {
               // this is a prefix character (i.e., "\n\n"), do nothing
               return;

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   Box,
@@ -21,15 +21,15 @@ function ChatWindow() {
   const [messages, setMessages] = useState<IChatMessage[]>([]);
   const [inputValue, setInputValue] = useState("");
 
-  const scrollBoxRef = useRef();
+  const scrollBoxRef: any = useRef();
 
   const toast = useToast();
 
   useEffect(() => {
     scrollBoxRef.current.scrollTop = scrollBoxRef.current.scrollHeight;
-  }, [scrollBoxRef.current?.scrollHeight]);
+  }, [scrollBoxRef?.current?.scrollHeight]);
 
-  const callChatGPT = async (newMessage) => {
+  const callChatGPT = async (newMessage: IChatMessage) => {
     const messageHistory = [...messages, newMessage];
 
     const response = await fetch("/api/chat", {
@@ -38,7 +38,7 @@ function ChatWindow() {
       },
       method: "POST",
       body: JSON.stringify(
-        messageHistory.map((message) => ({
+        messageHistory.map((message: IChatMessage) => ({
           role: message.role,
           content: message.content,
         }))
@@ -59,7 +59,7 @@ function ChatWindow() {
     const reader = response?.body?.getReader();
     const decoder = new TextDecoder();
     while (true) {
-      const { done, value } = await reader?.read();
+      const { done, value }: any = await reader?.read();
       if (done) {
         break;
       }
@@ -69,7 +69,7 @@ function ChatWindow() {
     }
   };
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       event.preventDefault();
       handleSubmit();
@@ -113,7 +113,7 @@ function ChatWindow() {
           fontSize="2xl"
           fontWeight="extrabold"
         >
-          Next ChatGPT
+          Chat Window
         </Text>
         <Box
           border="1px solid"

@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import ChatWindow from "@/components/ChatWindow";
 
-export default function chat_window() {
+export default function ChatPage() {
   return (
     <Center h="100vh" w="100vw">
       <ChatWindow></ChatWindow>

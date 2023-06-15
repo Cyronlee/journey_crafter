@@ -15,11 +15,15 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import ChatWindow from "@/components/ChatWindow";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function ChatPage() {
   return (
-    <Center h="100vh" w="100vw">
-      <ChatWindow></ChatWindow>
-    </Center>
+    <VStack h="100vh">
+      <ThemeToggle />
+      <Center h="100%" w="100vw">
+        <ChatWindow></ChatWindow>
+      </Center>
+    </VStack>
   );
 }

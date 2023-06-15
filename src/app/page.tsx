@@ -10,9 +10,13 @@ import {
   Button,
   Icon,
   IconProps,
+  useColorModeValue,
 } from "@chakra-ui/react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function CallToActionWithIllustration() {
+  const bgColor = useColorModeValue("white", "gray.300");
+
   return (
     <Container maxW={"5xl"}>
       <Stack
@@ -20,7 +24,9 @@ export default function CallToActionWithIllustration() {
         align={"center"}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
+        bgColor={bgColor}
       >
+        <ThemeToggle />
         <Heading
           fontWeight={600}
           fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}

@@ -12,7 +12,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import { Journey, JourneyStage } from '@/lib/JourneyFileParser';
+import { JourneyStage } from "@/lib/JourneyFileParser";
 
 ChartJS.register(
   CategoryScale,
@@ -24,22 +24,6 @@ ChartJS.register(
   Legend
 );
 ChartJS.defaults.scale.grid.display = false;
-
-interface JourneyData {
-  title?: string;
-  stages: JourneySection[];
-}
-
-interface JourneySection {
-  title: string;
-  entries: JourneyEntry[];
-}
-
-interface JourneyEntry {
-  action: string;
-  touchpoint: string;
-  emotion: string;
-}
 
 const canvasWidth = `${6 * 165}px`;
 
@@ -85,40 +69,44 @@ const options = {
   },
 };
 
-const JourneyMatrix = (props: {
-  stages: JourneyStage[]
-}) => {
+const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   return (
     <VStack display="flex" alignItems="flex-start">
       <HStack alignItems="flex-start">
         <VStack w="70px">
-          <Center
-            w="100%"
-            h="50px"
-            marginBottom="5px"
-            alignItems="center"
-          >
-            <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+          <Center w="100%" h="50px" marginBottom="5px" alignItems="center">
+            <Text
+              fontSize="16px"
+              lineHeight="15px"
+              fontWeight="bold"
+              mb="2px"
+              textAlign="right"
+              transform="rotate(-90deg) translateY(30px)"
+            >
               {"Stage"}
             </Text>
           </Center>
-          <Center
-            w="100%"
-            h="70px"
-            marginY="6px"
-            alignItems="center"
-          >
-            <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+          <Center w="100%" h="70px" marginY="6px" alignItems="center">
+            <Text
+              fontSize="16px"
+              lineHeight="15px"
+              fontWeight="bold"
+              mb="2px"
+              textAlign="right"
+              transform="rotate(-90deg) translateY(30px)"
+            >
               {"Action"}
             </Text>
           </Center>
-          <Center
-            w="100%"
-            h="70px"
-            marginY="6px"
-            alignItems="center"
-          >
-            <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+          <Center w="100%" h="70px" marginY="6px" alignItems="center">
+            <Text
+              fontSize="16px"
+              lineHeight="15px"
+              fontWeight="bold"
+              mb="2px"
+              textAlign="right"
+              transform="rotate(-90deg) translateY(30px)"
+            >
               {"Touch point"}
             </Text>
           </Center>
@@ -175,7 +163,14 @@ const JourneyMatrix = (props: {
         justifyContent="flex-start"
       >
         <Center w="70px" marginY="5px">
-          <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+          <Text
+            fontSize="16px"
+            lineHeight="15px"
+            fontWeight="bold"
+            mb="2px"
+            textAlign="right"
+            transform="rotate(-90deg) translateY(30px)"
+          >
             {"Emotion"}
           </Text>
         </Center>

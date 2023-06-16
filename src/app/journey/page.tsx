@@ -3,29 +3,24 @@
 import { Center, VStack } from "@chakra-ui/react";
 import ThemeToggle from "@/components/ThemeToggle";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
-import { JourneyHeaderWidget } from "@/app/journey/JourneyHeader";
+import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import { useEffect, useState } from "react";
+import {
+  Journey,
+  JourneyFileParser,
+  JourneyHeader,
+  JourneyStage,
+} from "@/lib/JourneyFileParser";
 
-export default async function MermaidPage() {
-  const journeyMock = {
-    header: {
-      personal: {},
-      scenario:
-        '"The quick brown fox jumps over the lazy dog" is an English language pangram a' +
-        "  sentence that contains all of the letters of the English alphabet. Owing to" +
-        "  its existence, Chakra was created.",
-      goals:
-        '"The quick brown fox jumps over the lazy dog" is an English language pangram a' +
-        "  sentence that contains all of the letters of the English alphabet. Owing to" +
-        "  its existence, Chakra was created.",
-    },
-  };
-  const [journey, setJourney] = useState(null);
+export default function JourneyPage() {
+  const [journey, setJourney] = useState<Journey>();
 
   useEffect(() => {
-    fetch(`/api/mock_data`).then(async (res) => {
-      const data = await res.text();
-      console.log(data);
+    fetch(`/api/mock_data`).then((res) => {
+      res.json().then((data) => {
+        let result = new JourneyFileParser(data.data).getJourney();
+        setJourney(result);
+      });
     });
   }, []);
 
@@ -35,9 +30,11 @@ export default async function MermaidPage() {
       <Center h="100%" w="80vw">
         <VStack>
           <JourneyHeaderWidget
-            header={journeyMock.header}
+            header={journey?.header ?? ({} as JourneyHeader)}
           ></JourneyHeaderWidget>
-          <JourneyMatrix stages={[]}></JourneyMatrix>
+          <JourneyMatrix
+            stages={journey?.stages ?? ([] as JourneyStage[])}
+          ></JourneyMatrix>
         </VStack>
       </Center>
     </VStack>

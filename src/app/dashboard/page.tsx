@@ -17,7 +17,7 @@ import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
 import React, { useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
-import { JourneyHeaderWidget } from "@/app/journey/JourneyHeader";
+import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
@@ -112,6 +112,7 @@ export default function ChatPage() {
         " sentence that contains all of the letters of the English alphabet. Owing to" +
         " its existence, Chakra was created.",
     },
+    stages: [],
   };
 
   return (

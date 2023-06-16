@@ -15,13 +15,14 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
       <Box w="50%" h="100%" padding={"20px 0px 20px 32px"} gap={"8px"}>
         <HStack w="240px" h="72px">
           <Box>
-            <Image
-              borderRadius="4px"
-              w="72px"
-              h="72px"
-              src="https://i.pravatar.cc/300"
-              alt="UX"
-            ></Image>
+            <Avatar bg="teal.500" />
+            {/*<Image*/}
+            {/*  borderRadius="4px"*/}
+            {/*  w="72px"*/}
+            {/*  h="72px"*/}
+            {/*  src="https://i.pravatar.cc/300"*/}
+            {/*  alt="UX"*/}
+            {/*></Image>*/}
           </Box>
           <Box>
             <VStack>
@@ -34,7 +35,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                   lineHeight: "20px",
                 }}
               >
-                {props.header.personal?.name}
+                {props.header?.personal?.name}
               </Heading>
               <Text
                 w="100%"
@@ -45,7 +46,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                   lineHeight: "15px",
                 }}
               >
-                {props.header.personal?.role}
+                {props.header?.personal?.role}
               </Text>
               <Text
                 w="100%"
@@ -56,8 +57,8 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                   lineHeight: "15px",
                 }}
               >
-                {props.header.personal?.isSingle ? "Single" : "Married"},{" "}
-                {props.header.personal?.age} years old
+                {props.header?.personal?.isSingle ? "Single" : "Married"},{" "}
+                {props.header?.personal?.age} years old
               </Text>
               <Text
                 w="100%"
@@ -68,7 +69,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                   lineHeight: "15px",
                 }}
               >
-                {props.header.personal?.address}
+                {props.header?.personal?.address}
               </Text>
             </VStack>
           </Box>

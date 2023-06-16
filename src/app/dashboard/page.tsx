@@ -72,7 +72,8 @@ export default function ChatPage() {
   const toast = useToast();
 
   const handleGenerate = () => {
-    alert("generate");
+    let value = painPointInputValue.trim();
+    setJourney(new JourneyFileParser(value).getJourney());
     if (
       whoInputValue.trim() === "" ||
       businessDomainInputValue.trim() === "" ||
@@ -86,9 +87,6 @@ export default function ChatPage() {
         isClosable: true,
       });
       return;
-    } else {
-      let value = keyBusinessInputValue.trim();
-      setJourney(new JourneyFileParser(value).getJourney());
     }
   };
 

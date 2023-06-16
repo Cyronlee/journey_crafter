@@ -58,7 +58,10 @@ const Navbar = () => {
               <MenuItem>Dashboard Page</MenuItem>
             </Link>
             <Link href="/journey">
-              <MenuItem>Journey Page</MenuItem>
+              <MenuItem>Journey Demo</MenuItem>
+            </Link>
+            <Link href="/debug">
+              <MenuItem>Debug Page</MenuItem>
             </Link>
           </MenuList>
         </Menu>

@@ -70,6 +70,17 @@ const options = {
 };
 
 const colors: string[] = ["#F2617A", "#6B9E78", "#47A1AD", "#634F7D"];
+const stageColors: string[] = [
+  "green.500",
+  "orange.500",
+  "yellow.500",
+  "teal.500",
+  "red.500",
+  "blue.500",
+  "cyan.500",
+  "purple.500",
+  "pink.500",
+];
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   return (
@@ -113,12 +124,12 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             </Text>
           </Center>
         </VStack>
-        {props.stages.map((section, sectionIndex) => (
+        {props.stages?.map((section, sectionIndex) => (
           <VStack key={sectionIndex} minW="160px">
             <Flex w="100%" color="white" h="50px">
               <Center
                 w="100%"
-                bg={colors[Math.floor(Math.random() * colors.length)]}
+                bg={stageColors[sectionIndex]}
                 borderRadius="4px"
               >
                 <Text fontSize="xl" fontWeight="bold" mb="2px" marginY="auto">
@@ -127,7 +138,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
               </Center>
             </Flex>
             <HStack>
-              {section.tasks.map((task, taskIndex) => (
+              {section.tasks?.map((task, taskIndex) => (
                 <VStack p="5px" key={taskIndex}>
                   <Flex
                     w="100%"

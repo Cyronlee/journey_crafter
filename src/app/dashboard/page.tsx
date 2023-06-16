@@ -16,9 +16,10 @@ import {
 import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
 import React, { useState } from "react";
-import ThemeToggle from '@/components/ThemeToggle';
-import { JourneyHeaderWidget } from '@/app/journey/JourneyHeader';
-import JourneyMatrix from '@/components/JourneyMatrix/JourneyMatrix';
+import ThemeToggle from "@/components/ThemeToggle";
+import { JourneyHeaderWidget } from "@/app/journey/JourneyHeader";
+import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
+import Navbar from "@/components/Navbar";
 
 export default function ChatPage() {
   const [inputValue, setInputValue] = useState("");
@@ -49,34 +50,22 @@ export default function ChatPage() {
         role: "UX Designer",
         isSingle: true,
         age: 32,
-        address: "Palo Alto, California"
+        address: "Palo Alto, California",
       },
-      scenario: "The quick brown fox jumps over the lazy dog is an English language pangram a" +
+      scenario:
+        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
         " sentence that contains all of the letters of the English alphabet. Owing to" +
         " its existence, Chakra was created.",
-      goals: "The quick brown fox jumps over the lazy dog is an English language pangram a" +
+      goals:
+        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
         " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created."
-    }
-  }
+        " its existence, Chakra was created.",
+    },
+  };
 
   return (
     <Box>
-      <ThemeToggle />
-      <Flex
-        w="100vw"
-        h="64px"
-        px="32px"
-        borderBottom="1px solid"
-        borderColor="gray.200"
-        alignItems="center"
-        gap="6px"
-      >
-        <Icon color="#F2617A" as={BiMapAlt} />
-        <Heading size="sm" fontFamily="Bitter" fontWeight="bold">
-          JourneyCrafter
-        </Heading>
-      </Flex>
+      <Navbar></Navbar>
       <Container px="0" maxW="960px" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">
@@ -116,7 +105,9 @@ export default function ChatPage() {
             >
               <Center h="100%" w="100%">
                 <VStack>
-                  <JourneyHeaderWidget header={journey.header}></JourneyHeaderWidget>
+                  <JourneyHeaderWidget
+                    header={journey.header}
+                  ></JourneyHeaderWidget>
                   <JourneyMatrix></JourneyMatrix>
                 </VStack>
               </Center>

@@ -1,6 +1,6 @@
 type Fn = (...args: any[]) => void;
 
-export function useDebounce(fn: Fn): Fn {
+export function debounced(fn: Fn): Fn {
   let lastTime = Date.now();
   console.log(`function useDebounce created at ${lastTime}`);
 

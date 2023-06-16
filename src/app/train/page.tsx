@@ -23,11 +23,38 @@ import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage, IChatMessage } from "@/types/chat";
 import MermaidWrapper from "@/components/MermairdWrapper";
 import mermaid from "mermaid";
-import { useDebounce } from "@/lib/debounce";
+import { debounced } from "@/lib/debounce";
+
+const initPrompt1 = `\`\`\`
+journey
+    title {string}
+    section {string}
+      {string}: {number 1-5}: {role}
+      {string}: {number 1-5}: {role}
+    section {string}
+      {string}: {number 1-5}: {role}
+      {string}: {number 1-5}: {role}
+\`\`\`
+这是一个mermaid用户旅程图的代码模板，下面是一个示例：
+\`\`\`
+journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+\`\`\`
+你需要根据我的需求，生成一个用户旅程图示例，并按照上面的代码格式返回给我，只返回代码
+`;
+
+const initPrompt2 = `记住，只返回\`\`\`中的代码，不包含\`\`\``;
 
 export default function ChatPage() {
-  const [prompt1, setPrompt1] = useState("");
-  const [prompt2, setPrompt2] = useState("");
+  const [prompt1, setPrompt1] = useState(initPrompt1);
+  const [prompt2, setPrompt2] = useState(initPrompt2);
   const [userInput, setUserInput] = useState("");
 
   const [mermaidData, setMermaidData] = useState(``);
@@ -53,7 +80,11 @@ export default function ChatPage() {
     // }
   };
 
-  let debouncedSetMermaidData = useDebounce(setMermaidData);
+  let debouncedSetMermaidData: (...args: any[]) => void =
+    debounced(setMermaidData);
+  useEffect(() => {
+    console.log("useEffect");
+  }, []);
 
   const callChatGPT = async (messages: ChatMessage[]) => {
     const response = await fetch("/api/generate", {
@@ -76,10 +107,15 @@ export default function ChatPage() {
       const chunk = decoder.decode(value);
       responseMessage += chunk;
       setChatgptResponse(responseMessage);
+
+      // stream update mermaid data
       if (await isMermaidDataValid(responseMessage)) {
-        // setMermaidData(responseMessage);
         debouncedSetMermaidData(responseMessage);
       }
+    }
+    // final update mermaid data
+    if (await isMermaidDataValid(responseMessage)) {
+      setMermaidData(responseMessage);
     }
   };
 
@@ -120,6 +156,7 @@ export default function ChatPage() {
             </Flex>
             <Heading size="sm">Prompt 1 (role: assistant)</Heading>
             <Textarea
+              h="256px"
               borderColor="gray.200"
               value={prompt1}
               onChange={(e) => setPrompt1(e.target.value)}

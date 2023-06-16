@@ -69,8 +69,8 @@ export default function Mermaid({
           const instance = svgPanZoom(ref.current!.querySelector("svg")!);
           instance.fit();
           instance.center();
-          instance.disablePan();
-          instance.disableZoom();
+          instance.enablePan();
+          instance.enableZoom();
           return instance;
         });
       })
@@ -101,12 +101,12 @@ export default function Mermaid({
         disableZoom();
       }
     };
-    document.addEventListener("keydown", handleSpaceDown);
-    document.addEventListener("keyup", handleSpaceUp);
+    // document.addEventListener("keydown", handleSpaceDown);
+    // document.addEventListener("keyup", handleSpaceUp);
 
     return () => {
-      document.removeEventListener("keydown", handleSpaceDown);
-      document.removeEventListener("keyup", handleSpaceUp);
+      // document.removeEventListener("keydown", handleSpaceDown);
+      // document.removeEventListener("keyup", handleSpaceUp);
     };
   }, [enableZoom, disableZoom]);
 
@@ -118,7 +118,7 @@ export default function Mermaid({
         <Button size="sm" onClick={downloadSVG}>
           Download SVG
         </Button>
-        <p>* hold space to pan & zoom</p>
+        <p>* drag to pan & zoom</p>
         <Button size="sm" onClick={resetZoom}>
           Reset Pan&Zoom
         </Button>

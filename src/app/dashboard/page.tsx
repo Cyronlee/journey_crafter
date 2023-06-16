@@ -20,30 +20,11 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { JourneyHeaderWidget } from "@/app/journey/JourneyHeader";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import Navbar from "@/components/Navbar";
+import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
 
 export default function ChatPage() {
   const [inputValue, setInputValue] = useState("");
-  const toast = useToast();
-  const handleGenerate = () => {
-    alert("generate");
-    if (inputValue.trim() === "") {
-      toast({
-        title: "Please input something...",
-        status: "warning",
-        isClosable: true,
-      });
-      return;
-    }
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleGenerate();
-    }
-  };
-
-  const journey = {
+  const [journey, setJourney] = useState<Journey>({
     header: {
       personal: {
         name: "Tom",
@@ -61,7 +42,55 @@ export default function ChatPage() {
         " sentence that contains all of the letters of the English alphabet. Owing to" +
         " its existence, Chakra was created.",
     },
+    stages: [
+      {
+        stage: "进入商店",
+        tasks: [
+          { task: "查看商品列表", touchpoint: "新用户", emotion: "好奇" },
+          { task: "点击商品", touchpoint: "新用户", emotion: "满意" },
+        ],
+      },
+      {
+        stage: "选择商品",
+        tasks: [
+          { task: "浏览商品详情", touchpoint: "新用户", emotion: "好奇" },
+          { task: "加入购物车", touchpoint: "新用户", emotion: "满意" },
+        ],
+      },
+      {
+        stage: "结账",
+        tasks: [
+          { task: "填写收货地址", touchpoint: "新用户", emotion: "紧张" },
+          { task: "支付订单", touchpoint: "新用户", emotion: "满意" },
+        ],
+      },
+    ],
+  });
+
+  const toast = useToast();
+
+  const handleGenerate = () => {
+    if (inputValue.trim() === "") {
+      toast({
+        title: "Please input something...",
+        status: "warning",
+        isClosable: true,
+      });
+      return;
+    } else {
+      let value = inputValue.trim();
+      setJourney(new JourneyFileParser(value).getJourney());
+    }
   };
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleGenerate();
+    }
+  };
+
+
 
   return (
     <Box>
@@ -108,7 +137,7 @@ export default function ChatPage() {
                   <JourneyHeaderWidget
                     header={journey.header}
                   ></JourneyHeaderWidget>
-                  <JourneyMatrix></JourneyMatrix>
+                  <JourneyMatrix stages={journey.stages}></JourneyMatrix>
                 </VStack>
               </Center>
             </VStack>

@@ -1,5 +1,10 @@
 header:
-  personal: zushun
+  personal:
+    name: test
+    age: 18
+    isSingle: false
+    role: dev
+    address: wuhan
   scenario: simple_scenario
   goals: simple_goals
 stages:

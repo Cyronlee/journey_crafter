@@ -26,7 +26,7 @@ export interface JourneyStage {
 }
 
 export interface Journey {
-    header?: JourneyHeader;
+    header: JourneyHeader;
     stages: JourneyStage[];
 }
 export class JourneyFileParser {

@@ -7,7 +7,7 @@ import {
   ParsedEvent,
   ReconnectInterval,
 } from "eventsource-parser";
-import { promptMessage } from "@/app/prompts/first";
+import { promptMessage } from "@/prompts/first";
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY as string;
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
 
   const userMessages = (await req.json()) as ChatMessage[];
 
-  const finalMessages = [promptMessage, ...userMessages];
+  const finalMessages = [...userMessages];
 
   const requestBody = {
     headers: {

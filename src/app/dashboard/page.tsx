@@ -86,8 +86,9 @@ export default function ChatPage() {
             >
               Generate
             </Button>
-            <Box
-              h="240px"
+            <Text
+              whiteSpace="pre"
+              minH="240px"
               w="100%"
               borderRadius="8px"
               borderColor="gray.200 !important"
@@ -95,7 +96,7 @@ export default function ChatPage() {
               p="8px 16px"
             >
               User journey placeholder 1
-            </Box>
+            </Text>
           </VStack>
         </Box>
       </Container>

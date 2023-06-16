@@ -131,7 +131,8 @@ export default function ChatPage() {
             >
               Generate
             </Button>
-            <Box
+            <Text
+              whiteSpace="pre"
               h="240px"
               w="100%"
               borderRadius="8px"
@@ -140,7 +141,7 @@ export default function ChatPage() {
               p="8px 16px"
             >
               {chatgptResponse}
-            </Box>
+            </Text>
           </VStack>
         </Box>
       </Container>

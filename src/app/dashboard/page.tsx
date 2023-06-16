@@ -23,7 +23,11 @@ import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
 
 export default function ChatPage() {
-  const [inputValue, setInputValue] = useState("");
+  const [whoInputValue, setWhoInputValue] = useState("");
+  const [businessDomainInputValue, setBusinessDomainInputValue] = useState("");
+  const [wantToInputValue, setWantToInputValue] = useState("");
+  const [keyBusinessInputValue, setKeyBusinessInputValue] = useState("");
+  const [painPointInputValue, setPainPointInputValue] = useState("");
   const [journey, setJourney] = useState<Journey>({
     header: {
       personal: {
@@ -70,7 +74,14 @@ export default function ChatPage() {
   const toast = useToast();
 
   const handleGenerate = () => {
-    if (inputValue.trim() === "") {
+    alert("generate");
+    if (
+      whoInputValue.trim() === "" ||
+      businessDomainInputValue.trim() === "" ||
+      wantToInputValue.trim() === "" ||
+      keyBusinessInputValue.trim() === "" ||
+      painPointInputValue.trim() === ""
+    ) {
       toast({
         title: "Please input something...",
         status: "warning",
@@ -83,14 +94,25 @@ export default function ChatPage() {
     }
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleGenerate();
-    }
+  const journey = {
+    header: {
+      personal: {
+        name: "Tom",
+        role: "UX Designer",
+        isSingle: true,
+        age: 32,
+        address: "Palo Alto, California",
+      },
+      scenario:
+        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
+        " sentence that contains all of the letters of the English alphabet. Owing to" +
+        " its existence, Chakra was created.",
+      goals:
+        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
+        " sentence that contains all of the letters of the English alphabet. Owing to" +
+        " its existence, Chakra was created.",
+    },
   };
-
-
 
   return (
     <Box>
@@ -98,21 +120,57 @@ export default function ChatPage() {
       <Container px="0" maxW="960px" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">
-            <Flex mt="24px" mb="12px" alignItems="center" gap="6px">
-              <Icon color="#CC850A" as={FiSun} />
-
-              <Text>
-                Hi, you can generate a user journey map just by entering the
-                prompt. Give it a try now!
+            <Flex
+              mt="24px"
+              mb="12px"
+              alignItems="center"
+              justifyContent="center"
+              direction="column"
+              gap="6px"
+            >
+              <Icon color="#CC850A" as={FiSun} boxSize="2.2rem" />
+              <Text mt="0.3rem">
+                Hi, you can generate a to-be user journey map just by entering
+                the prompt. Give it a try now!
               </Text>
+              <Heading size="md" mt="2rem">
+                Prompt
+              </Heading>
             </Flex>
-            <Heading size="sm">Prompt</Heading>
+            <Text>Who</Text>
             <Textarea
               borderColor="gray.200"
               placeholder="Here is a sample placeholder"
-              value={inputValue}
-              onKeyDown={handleKeyPress}
-              onChange={(e) => setInputValue(e.target.value)}
+              value={whoInputValue}
+              onChange={(e) => setWhoInputValue(e.target.value)}
+            />
+            <Text>Business domain</Text>
+            <Textarea
+              borderColor="gray.200"
+              placeholder="Here is a sample placeholder"
+              value={businessDomainInputValue}
+              onChange={(e) => setBusinessDomainInputValue(e.target.value)}
+            />
+            <Text>I want to</Text>
+            <Textarea
+              borderColor="gray.200"
+              placeholder="Here is a sample placeholder"
+              value={wantToInputValue}
+              onChange={(e) => setWantToInputValue(e.target.value)}
+            />
+            <Text>Key business process</Text>
+            <Textarea
+              borderColor="gray.200"
+              placeholder="Here is a sample placeholder"
+              value={keyBusinessInputValue}
+              onChange={(e) => setKeyBusinessInputValue(e.target.value)}
+            />
+            <Text>Pain points</Text>
+            <Textarea
+              borderColor="gray.200"
+              placeholder="Here is a sample placeholder"
+              value={painPointInputValue}
+              onChange={(e) => setPainPointInputValue(e.target.value)}
             />
             <Button
               w="84px"

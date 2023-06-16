@@ -114,44 +114,41 @@ const JourneyMatrix = () => {
   return (
     <VStack display="flex" alignItems="flex-start">
       <HStack alignItems="flex-start">
-        <VStack w="150px">
-          <Flex
+        <VStack w="70px">
+          <Center
             w="100%"
-            h="30px"
+            h="50px"
             marginBottom="5px"
             alignItems="center"
-            justifyContent="flex-end"
           >
-            <Text fontSize="xl" fontWeight="bold" mb="2px" textAlign="right">
-              {"Stages"}
+            <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+              {"Stage"}
             </Text>
-          </Flex>
-          <Flex
+          </Center>
+          <Center
             w="100%"
             h="70px"
             marginY="6px"
             alignItems="center"
-            justifyContent="flex-end"
           >
-            <Text fontSize="xl" fontWeight="bold" mb="2px" textAlign="right">
-              {"Tasks"}
+            <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+              {"Action"}
             </Text>
-          </Flex>
-          <Flex
+          </Center>
+          <Center
             w="100%"
             h="70px"
             marginY="6px"
             alignItems="center"
-            justifyContent="flex-end"
           >
-            <Text fontSize="xl" fontWeight="bold" mb="2px" textAlign="right">
-              {"Emotions"}
+            <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+              {"Touch point"}
             </Text>
-          </Flex>
+          </Center>
         </VStack>
         {journeyData.stages.map((section, sectionIndex) => (
           <VStack key={sectionIndex} minW="160px">
-            <Flex w="100%" color="white">
+            <Flex w="100%" color="white" h="50px">
               <Center w="100%" bg="green.500" borderRadius="5px">
                 <Text fontSize="xl" fontWeight="bold" mb="2px" marginY="auto">
                   {section.title}
@@ -200,11 +197,11 @@ const JourneyMatrix = () => {
         alignItems="center"
         justifyContent="flex-start"
       >
-        <Flex w="150px" marginY="5px" justifyContent="flex-end">
-          <Text fontSize="xl" fontWeight="bold" mb="2px" textAlign="right">
-            {"Touch Points"}
+        <Center w="70px" marginY="5px">
+          <Text fontSize="16px" lineHeight="15px" fontWeight="bold" mb="2px" textAlign="right" transform="rotate(-90deg) translateY(30px)">
+            {"Emotion"}
           </Text>
-        </Flex>
+        </Center>
         <Box
           w={canvasWidth}
           h="100%"

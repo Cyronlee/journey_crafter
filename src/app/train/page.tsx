@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ChatMessage, IChatMessage } from "@/types/chat";
 import MermaidWrapper from "@/components/MermairdWrapper";
 import mermaid from "mermaid";
@@ -81,8 +81,8 @@ export default function ChatPage() {
     // }
   };
 
-  let debouncedSetMermaidData: (...args: any[]) => void =
-    debounced(setMermaidData);
+  const debouncedSetMermaidData = useMemo(() => debounced(setMermaidData), []);
+
   useEffect(() => {
     console.log("useEffect");
   }, []);

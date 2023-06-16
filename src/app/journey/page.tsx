@@ -1,7 +1,6 @@
 "use client";
 
 import { Center, VStack } from "@chakra-ui/react";
-import ThemeToggle from "@/components/ThemeToggle";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import { useEffect, useState } from "react";
@@ -26,7 +25,6 @@ export default function JourneyPage() {
 
   return (
     <VStack h="100vh">
-      <ThemeToggle />
       <Center h="100%" w="80vw">
         <VStack>
           <JourneyHeaderWidget

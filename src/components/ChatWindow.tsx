@@ -116,7 +116,7 @@ function ChatWindow() {
           Chat Window
         </Text>
         <Box
-          border="1px solid"
+          border="2px solid"
           borderColor="gray.400"
           borderRadius={8}
           overflowY="auto"
@@ -140,6 +140,8 @@ function ChatWindow() {
         <Box>
           <InputGroup size="lg">
             <Input
+              borderColor="gray.400"
+              borderWidth="2px"
               size="lg"
               pr="6rem"
               type="text"

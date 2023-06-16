@@ -14,7 +14,6 @@ import {
   IconProps,
   useColorModeValue,
 } from "@chakra-ui/react";
-import ThemeToggle from "@/components/ThemeToggle";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {

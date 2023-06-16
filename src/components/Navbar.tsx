@@ -24,18 +24,20 @@ const Navbar = () => {
       w="100vw"
       h="64px"
       px="32px"
-      borderBottom="1px solid"
+      borderBottom="2px solid"
       borderColor="gray.400"
       alignItems="center"
       gap="6px"
       justifyContent="space-between"
     >
-      <HStack>
-        <Icon h="32px" w="32px" color="#F2617A" as={BiMapAlt} />
-        <Heading size="md" fontFamily="Bitter" fontWeight="bold">
-          JourneyCrafter
-        </Heading>
-      </HStack>
+      <Link href="/">
+        <HStack>
+          <Icon h="32px" w="32px" color="#F2617A" as={BiMapAlt} />
+          <Heading size="md" fontFamily="Bitter" fontWeight="bold">
+            JourneyCrafter
+          </Heading>
+        </HStack>
+      </Link>
 
       <HStack>
         <Menu>
@@ -60,7 +62,7 @@ const Navbar = () => {
             </Link>
           </MenuList>
         </Menu>
-        <ThemeToggle />
+        {/*<ThemeToggle />*/}
       </HStack>
     </Flex>
   );

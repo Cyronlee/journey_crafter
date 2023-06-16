@@ -24,6 +24,7 @@ import { ChatMessage, IChatMessage } from "@/types/chat";
 import MermaidWrapper from "@/components/MermairdWrapper";
 import mermaid from "mermaid";
 import { debounced } from "@/lib/debounce";
+import Navbar from "@/components/Navbar";
 
 const initPrompt1 = `\`\`\`
 journey
@@ -130,20 +131,7 @@ export default function ChatPage() {
 
   return (
     <Box>
-      <Flex
-        w="100vw"
-        h="64px"
-        px="32px"
-        borderBottom="1px solid"
-        borderColor="gray.400"
-        alignItems="center"
-        gap="6px"
-      >
-        <Icon color="#F2617A" as={BiMapAlt} />
-        <Heading size="sm" fontFamily="Bitter" fontWeight="bold">
-          JourneyCrafter
-        </Heading>
-      </Flex>
+      <Navbar></Navbar>
       <Container px="0" w="960px" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">

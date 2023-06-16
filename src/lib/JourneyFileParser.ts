@@ -1,9 +1,17 @@
 import {load} from "js-yaml"
 
+export interface PersonInfo {
+    name?: string;
+    role?: string;
+    isSingle?: boolean;
+    age?: number;
+    address?: string;
+}
+
 export interface JourneyHeader {
-    personal: string;
-    scenario: string;
-    goals: string;
+    personal?: PersonInfo;
+    scenario?: string;
+    goals?: string;
 }
 
 interface JourneyTask {

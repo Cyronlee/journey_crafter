@@ -44,7 +44,13 @@ export default function ChatPage() {
 
   const journey = {
     header: {
-      personal: "zushun chen",
+      personal: {
+        name: "Tom",
+        role: "UX Designer",
+        isSingle: true,
+        age: 32,
+        address: "Palo Alto, California"
+      },
       scenario: "The quick brown fox jumps over the lazy dog is an English language pangram a" +
         " sentence that contains all of the letters of the English alphabet. Owing to" +
         " its existence, Chakra was created.",
@@ -104,8 +110,9 @@ export default function ChatPage() {
               w="100%"
               borderRadius="8px"
               borderColor="gray.200 !important"
-              border="1px solid"
-              p="8px 16px"
+              border="1px solid rgba(0, 0, 0, 0.06)"
+              p="0px"
+              boxShadow="0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05)"
             >
               <Center h="100%" w="100%">
                 <VStack>

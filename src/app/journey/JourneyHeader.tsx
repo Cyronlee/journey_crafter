@@ -7,7 +7,7 @@ export const JourneyHeaderWidget = (
   }
 ) => {
     return (
-       <HStack w="100%" border="1px solid rgba(0, 0, 0, 0.08)" >
+       <HStack w="100%" borderBottom="1px solid rgba(0, 0, 0, 0.08)" >
            <Box w="50%" h="100%" padding={'20px 0px 20px 32px'} gap={'8px'} >
                <HStack w="240px" h="72px">
                    <Box>
@@ -15,10 +15,10 @@ export const JourneyHeaderWidget = (
                    </Box>
                    <Box>
                        <VStack>
-                           <Heading w='100%' style={{fontSize: "16px", fontFamily: "Inter", fontWeight: "700", lineHeight: "20px"}}>Tom</Heading>
-                           <Text w='100%' style={{fontSize: "14px", fontFamily: "Inter", fontWeight: "400", lineHeight: "15px"}}>UX Designer</Text>
-                           <Text w='100%' style={{fontSize: "14px", fontFamily: "Inter", fontWeight: "400", lineHeight: "15px"}}>Single, 32 years old</Text>
-                           <Text w='100%' style={{fontSize: "14px", fontFamily: "Inter", fontWeight: "400", lineHeight: "15px"}}>Palo Alto, California</Text>
+                           <Heading w='100%' style={{fontSize: "16px", fontFamily: "Inter", fontWeight: "700", lineHeight: "20px"}}>{props.header.personal?.name}</Heading>
+                           <Text w='100%' style={{fontSize: "14px", fontFamily: "Inter", fontWeight: "400", lineHeight: "15px"}}>{props.header.personal?.role}</Text>
+                           <Text w='100%' style={{fontSize: "14px", fontFamily: "Inter", fontWeight: "400", lineHeight: "15px"}}>{props.header.personal?.isSingle ? "Single" : "Married"}, {props.header.personal?.age} years old</Text>
+                           <Text w='100%' style={{fontSize: "14px", fontFamily: "Inter", fontWeight: "400", lineHeight: "15px"}}>{props.header.personal?.address}</Text>
                        </VStack>
                    </Box>
                </HStack>

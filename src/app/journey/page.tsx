@@ -37,7 +37,7 @@ export default async function MermaidPage() {
           <JourneyHeaderWidget
             header={journeyMock.header}
           ></JourneyHeaderWidget>
-          <JourneyMatrix></JourneyMatrix>
+          <JourneyMatrix stages={[]}></JourneyMatrix>
         </VStack>
       </Center>
     </VStack>

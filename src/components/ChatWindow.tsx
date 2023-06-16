@@ -117,7 +117,7 @@ function ChatWindow() {
         </Text>
         <Box
           border="1px solid"
-          borderColor="gray.200"
+          borderColor="gray.400"
           borderRadius={8}
           overflowY="auto"
           flex="1"

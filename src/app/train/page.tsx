@@ -135,7 +135,7 @@ export default function ChatPage() {
         h="64px"
         px="32px"
         borderBottom="1px solid"
-        borderColor="gray.200"
+        borderColor="gray.400"
         alignItems="center"
         gap="6px"
       >
@@ -157,19 +157,19 @@ export default function ChatPage() {
             <Heading size="sm">Prompt 1 (role: assistant)</Heading>
             <Textarea
               h="256px"
-              borderColor="gray.200"
+              borderColor="gray.400"
               value={prompt1}
               onChange={(e) => setPrompt1(e.target.value)}
             />
             <Heading size="sm">Prompt 2 (role: user)</Heading>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               value={prompt2}
               onChange={(e) => setPrompt2(e.target.value)}
             />
             <Heading size="sm">User Input (role: user)</Heading>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               placeholder="Here is a sample placeholder"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
@@ -187,7 +187,7 @@ export default function ChatPage() {
               minH="240px"
               w="960px"
               borderRadius="8px"
-              borderColor="gray.200 !important"
+              borderColor="gray.400 !important"
               border="1px solid"
               p="8px 16px"
             >
@@ -196,7 +196,7 @@ export default function ChatPage() {
             <Box
               h="700px"
               borderRadius="8px"
-              borderColor="gray.200 !important"
+              borderColor="gray.400 !important"
               border="1px solid"
             >
               <MermaidWrapper graphDefinition={mermaidData}></MermaidWrapper>

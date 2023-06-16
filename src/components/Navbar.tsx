@@ -25,7 +25,7 @@ const Navbar = () => {
       h="64px"
       px="32px"
       borderBottom="1px solid"
-      borderColor="gray.200"
+      borderColor="gray.400"
       alignItems="center"
       gap="6px"
       justifyContent="space-between"

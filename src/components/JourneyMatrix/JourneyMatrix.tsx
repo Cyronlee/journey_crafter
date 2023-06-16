@@ -69,12 +69,7 @@ const options = {
   },
 };
 
-const colors: string[] = [
-  "#F2617A",
-  "#6B9E78",
-  "#47A1AD",
-  "#634F7D"
-];
+const colors: string[] = ["#F2617A", "#6B9E78", "#47A1AD", "#634F7D"];
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   return (
@@ -121,7 +116,11 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
         {props.stages.map((section, sectionIndex) => (
           <VStack key={sectionIndex} minW="160px">
             <Flex w="100%" color="white" h="50px">
-              <Center w="100%" bg={ colors[Math.floor(Math.random() * colors.length)] } borderRadius="4px">
+              <Center
+                w="100%"
+                bg={colors[Math.floor(Math.random() * colors.length)]}
+                borderRadius="4px"
+              >
                 <Text fontSize="xl" fontWeight="bold" mb="2px" marginY="auto">
                   {section.stage}
                 </Text>
@@ -134,7 +133,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     w="100%"
                     borderWidth="1px"
                     borderRadius="5px"
-                    borderColor="gray.300"
+                    borderColor="gray.400"
                     minW="150px"
                     minH="70px"
                   >
@@ -146,7 +145,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     w="100%"
                     borderWidth="1px"
                     borderRadius="5px"
-                    borderColor="gray.300"
+                    borderColor="gray.400"
                     minW="120px"
                     minH="70px"
                   >
@@ -185,7 +184,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
           w={canvasWidth}
           h="100%"
           borderWidth="1px"
-          borderColor="gray.200"
+          borderColor="gray.400"
           borderRadius="md"
           p="4"
           marginLeft="5px"

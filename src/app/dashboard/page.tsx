@@ -18,7 +18,7 @@ import React, { useState } from "react";
 import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import Navbar from "@/components/Navbar";
-import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
+import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 
 export default function ChatPage() {
   const [whoInputValue, setWhoInputValue] = useState("");
@@ -117,35 +117,35 @@ export default function ChatPage() {
             </Flex>
             <Text>Who</Text>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               placeholder="Here is a sample placeholder"
               value={whoInputValue}
               onChange={(e) => setWhoInputValue(e.target.value)}
             />
             <Text>Business domain</Text>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               placeholder="Here is a sample placeholder"
               value={businessDomainInputValue}
               onChange={(e) => setBusinessDomainInputValue(e.target.value)}
             />
             <Text>I want to</Text>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               placeholder="Here is a sample placeholder"
               value={wantToInputValue}
               onChange={(e) => setWantToInputValue(e.target.value)}
             />
             <Text>Key business process</Text>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               placeholder="Here is a sample placeholder"
               value={keyBusinessInputValue}
               onChange={(e) => setKeyBusinessInputValue(e.target.value)}
             />
             <Text>Pain points</Text>
             <Textarea
-              borderColor="gray.200"
+              borderColor="gray.400"
               placeholder="Here is a sample placeholder"
               value={painPointInputValue}
               onChange={(e) => setPainPointInputValue(e.target.value)}
@@ -163,7 +163,7 @@ export default function ChatPage() {
               minH="240px"
               w="100%"
               borderRadius="8px"
-              borderColor="gray.200 !important"
+              borderColor="gray.400 !important"
               border="1px solid rgba(0, 0, 0, 0.06)"
               p="0px"
               boxShadow="0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05)"

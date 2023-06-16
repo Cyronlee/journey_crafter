@@ -13,7 +13,7 @@ function ChatMessage({ message, isMe }: { message: any; isMe: boolean }) {
         {parseTime(message.timestamp)}
       </Text>
       <Box
-        bg={isMe ? "teal.500" : "gray.200"}
+        bg={isMe ? "teal.500" : "gray.400"}
         color={isMe ? "white" : "black"}
         borderRadius="lg"
         p={2}

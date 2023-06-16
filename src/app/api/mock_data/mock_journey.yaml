@@ -1,0 +1,18 @@
+header:
+  personal: zushun
+  scenario: simple_scenario
+  goals: simple_goals
+stages:
+  - stage: stage1
+    tasks:
+      - task: task1
+        touchpoint: touchpoint1
+        emotion: emotion1
+  - stage: stage2
+    tasks:
+      - task: task2
+        touchpoint: touchpoint2
+        emotions: emotion2
+      - task: task3
+        touchpoint: touchpoint3
+        emotions: emotion3

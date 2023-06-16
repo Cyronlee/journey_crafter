@@ -1,6 +1,6 @@
 import {load} from "js-yaml"
 
-interface JourneyHeader {
+export interface JourneyHeader {
     personal: string;
     scenario: string;
     goals: string;
@@ -12,21 +12,20 @@ interface JourneyTask {
     emotion: number;
 }
 
-interface JourneyStage {
+export interface JourneyStage {
     stage: string;
     tasks: JourneyTask[];
 }
 
-interface Journey {
-    header: JourneyHeader;
-    stages: JourneyStage[];
+export interface Journey {
+    header?: JourneyHeader;
+    stages?: JourneyStage[];
 }
 export class JourneyFileParser {
     private readonly journey: Journey;
 
     public constructor(yamlDoc: string) {
         this.journey = load(yamlDoc) as Journey;
-        console.log(this.journey);
     }
 
     public getJourney() {

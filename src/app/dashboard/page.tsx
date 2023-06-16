@@ -7,19 +7,18 @@ import {
   Flex,
   Center,
   Heading,
-  Input,
   Button,
   Textarea,
-  InputGroup,
-  InputRightElement,
   useToast,
-  useColorModeValue,
   Container,
   Icon,
 } from "@chakra-ui/react";
 import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
 import React, { useState } from "react";
+import ThemeToggle from '@/components/ThemeToggle';
+import { JourneyHeaderWidget } from '@/app/journey/JourneyHeader';
+import JourneyMatrix from '@/components/JourneyMatrix/JourneyMatrix';
 
 export default function ChatPage() {
   const [inputValue, setInputValue] = useState("");
@@ -43,8 +42,21 @@ export default function ChatPage() {
     }
   };
 
+  const journey = {
+    header: {
+      personal: "zushun chen",
+      scenario: "The quick brown fox jumps over the lazy dog is an English language pangram a" +
+        " sentence that contains all of the letters of the English alphabet. Owing to" +
+        " its existence, Chakra was created.",
+      goals: "The quick brown fox jumps over the lazy dog is an English language pangram a" +
+        " sentence that contains all of the letters of the English alphabet. Owing to" +
+        " its existence, Chakra was created."
+    }
+  }
+
   return (
     <Box>
+      <ThemeToggle />
       <Flex
         w="100vw"
         h="64px"
@@ -86,7 +98,7 @@ export default function ChatPage() {
             >
               Generate
             </Button>
-            <Text
+            <VStack
               whiteSpace="pre"
               minH="240px"
               w="100%"
@@ -95,8 +107,13 @@ export default function ChatPage() {
               border="1px solid"
               p="8px 16px"
             >
-              User journey placeholder 1
-            </Text>
+              <Center h="100%" w="100%">
+                <VStack>
+                  <JourneyHeaderWidget header={journey.header}></JourneyHeaderWidget>
+                  <JourneyMatrix></JourneyMatrix>
+                </VStack>
+              </Center>
+            </VStack>
           </VStack>
         </Box>
       </Container>

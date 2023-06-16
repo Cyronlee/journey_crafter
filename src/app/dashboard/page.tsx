@@ -14,9 +14,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { FiSun } from "react-icons/fi";
-import { BiMapAlt } from "react-icons/bi";
 import React, { useState } from "react";
-import ThemeToggle from "@/components/ThemeToggle";
 import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import Navbar from "@/components/Navbar";
@@ -89,30 +87,9 @@ export default function ChatPage() {
       });
       return;
     } else {
-      let value = inputValue.trim();
+      let value = keyBusinessInputValue.trim();
       setJourney(new JourneyFileParser(value).getJourney());
     }
-  };
-
-  const journey = {
-    header: {
-      personal: {
-        name: "Tom",
-        role: "UX Designer",
-        isSingle: true,
-        age: 32,
-        address: "Palo Alto, California",
-      },
-      scenario:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
-        " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created.",
-      goals:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
-        " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created.",
-    },
-    stages: [],
   };
 
   return (

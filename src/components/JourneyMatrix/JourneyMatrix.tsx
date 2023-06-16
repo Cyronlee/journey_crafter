@@ -69,6 +69,13 @@ const options = {
   },
 };
 
+const colors: string[] = [
+  "#F2617A",
+  "#6B9E78",
+  "#47A1AD",
+  "#634F7D"
+];
+
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   return (
     <VStack display="flex" alignItems="flex-start">
@@ -114,7 +121,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
         {props.stages.map((section, sectionIndex) => (
           <VStack key={sectionIndex} minW="160px">
             <Flex w="100%" color="white" h="50px">
-              <Center w="100%" bg="green.500" borderRadius="5px">
+              <Center w="100%" bg={ colors[Math.floor(Math.random() * colors.length)] } borderRadius="4px">
                 <Text fontSize="xl" fontWeight="bold" mb="2px" marginY="auto">
                   {section.stage}
                 </Text>

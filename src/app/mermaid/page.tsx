@@ -120,10 +120,13 @@ export default function ChatPage() {
     isFinal: boolean
   ) => {
     let tempString = chatgptResponse;
-    tempString = tempString.replace("```", "");
-    const headerIndex = chatgptResponse.indexOf("journey");
+    const headerIndex = tempString.indexOf("journey");
     if (headerIndex !== -1) {
-      tempString = chatgptResponse.substring(headerIndex);
+      tempString = tempString.substring(headerIndex);
+    }
+    const lastMarkdownIndex = tempString.lastIndexOf("```");
+    if (headerIndex !== -1) {
+      tempString = tempString.slice(0, lastMarkdownIndex);
     }
     if (await isMermaidDataValid(tempString)) {
       if (isFinal) {

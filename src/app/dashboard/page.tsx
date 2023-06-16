@@ -17,8 +17,6 @@ import {
   Container,
   Icon,
 } from "@chakra-ui/react";
-import JourneySvg from "@/svg/journey.svg";
-import { SunIcon } from "@/icons/sun";
 import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
 

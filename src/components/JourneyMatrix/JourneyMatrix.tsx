@@ -22,6 +22,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+ChartJS.defaults.scale.grid.display = false;
 
 interface JourneyData {
   title?: string;
@@ -81,20 +82,12 @@ const data = {
 };
 
 const options = {
+  showScale: false,
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
-    scales: {
-      xAxes: [
-        {
-          display: false,
-        },
-      ],
-      yAxes: [
-        {
-          display: false,
-        },
-      ],
+    tooltips: {
+      enabled: false,
     },
     legend: {
       display: false,
@@ -103,13 +96,16 @@ const options = {
       display: false,
     },
   },
-  elements: {
-    line: {
-      backgroundColor: "transparent",
-      borderWidth: 2,
+  scales: {
+    x: {
+      ticks: {
+        display: false,
+      },
     },
-    point: {
-      radius: 0,
+    y: {
+      ticks: {
+        display: false,
+      },
     },
   },
 };

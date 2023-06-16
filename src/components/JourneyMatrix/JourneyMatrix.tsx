@@ -12,6 +12,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
+import { Journey, JourneyStage } from '@/lib/JourneyFileParser';
 
 ChartJS.register(
   CategoryScale,
@@ -40,27 +41,27 @@ interface JourneyEntry {
   emotion: string;
 }
 
-const journeyData: JourneyData = {
+const journeyData: Journey = {
   stages: [
     {
-      title: "进入商店",
-      entries: [
-        { action: "查看商品列表", touchpoint: "新用户", emotion: "好奇" },
-        { action: "点击商品", touchpoint: "新用户", emotion: "满意" },
+      stage: "进入商店",
+      tasks: [
+        { task: "查看商品列表", touchpoint: "新用户", emotion: "好奇" },
+        { task: "点击商品", touchpoint: "新用户", emotion: "满意" },
       ],
     },
     {
-      title: "选择商品",
-      entries: [
-        { action: "浏览商品详情", touchpoint: "新用户", emotion: "好奇" },
-        { action: "加入购物车", touchpoint: "新用户", emotion: "满意" },
+      stage: "选择商品",
+      tasks: [
+        { task: "浏览商品详情", touchpoint: "新用户", emotion: "好奇" },
+        { task: "加入购物车", touchpoint: "新用户", emotion: "满意" },
       ],
     },
     {
-      title: "结账",
-      entries: [
-        { action: "填写收货地址", touchpoint: "新用户", emotion: "紧张" },
-        { action: "支付订单", touchpoint: "新用户", emotion: "满意" },
+      stage: "结账",
+      tasks: [
+        { task: "填写收货地址", touchpoint: "新用户", emotion: "紧张" },
+        { task: "支付订单", touchpoint: "新用户", emotion: "满意" },
       ],
     },
   ],
@@ -151,13 +152,13 @@ const JourneyMatrix = () => {
             <Flex w="100%" color="white" h="50px">
               <Center w="100%" bg="green.500" borderRadius="5px">
                 <Text fontSize="xl" fontWeight="bold" mb="2px" marginY="auto">
-                  {section.title}
+                  {section.stage}
                 </Text>
               </Center>
             </Flex>
             <HStack>
-              {section.entries.map((entry, entryIndex) => (
-                <VStack p="5px" key={entryIndex}>
+              {section.tasks.map((task, taskIndex) => (
+                <VStack p="5px" key={taskIndex}>
                   <Flex
                     w="100%"
                     borderWidth="1px"
@@ -167,7 +168,7 @@ const JourneyMatrix = () => {
                     minH="70px"
                   >
                     <Box w="100%" minH="70px" m="5px" borderRadius="5px">
-                      <Text>{entry.action}</Text>
+                      <Text>{task.task}</Text>
                     </Box>
                   </Flex>
                   <Flex
@@ -179,7 +180,7 @@ const JourneyMatrix = () => {
                     minH="70px"
                   >
                     <Box w="100%" minH="70px" m="5px" borderRadius="5px">
-                      <Text>{entry.touchpoint}</Text>
+                      <Text>{task.touchpoint}</Text>
                     </Box>
                   </Flex>
                   {/*<Box w="100%" h="104px">*/}

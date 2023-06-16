@@ -17,7 +17,7 @@ export interface JourneyHeader {
 interface JourneyTask {
     task: string;
     touchpoint: string;
-    emotion: number;
+    emotion: number | string;
 }
 
 export interface JourneyStage {
@@ -27,7 +27,7 @@ export interface JourneyStage {
 
 export interface Journey {
     header?: JourneyHeader;
-    stages?: JourneyStage[];
+    stages: JourneyStage[];
 }
 export class JourneyFileParser {
     private readonly journey: Journey;

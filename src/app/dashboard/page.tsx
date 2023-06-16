@@ -19,8 +19,29 @@ import {
 } from "@chakra-ui/react";
 import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
+import React, { useState } from "react";
 
 export default function ChatPage() {
+  const [inputValue, setInputValue] = useState("");
+  const handleGenerate = () => {
+    alert("generate");
+    if (inputValue.trim() === "") {
+      toast({
+        title: "Please input something...",
+        status: "warning",
+        isClosable: true,
+      });
+      return;
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleGenerate();
+    }
+  };
+
   return (
     <Box>
       <Flex
@@ -52,8 +73,16 @@ export default function ChatPage() {
             <Textarea
               borderColor="gray.200"
               placeholder="Here is a sample placeholder"
+              value={inputValue}
+              onKeyDown={handleKeyPress}
+              onChange={(e) => setInputValue(e.target.value)}
             />
-            <Button w="84px" size="sm" colorScheme="purple">
+            <Button
+              w="84px"
+              size="sm"
+              colorScheme="purple"
+              onClick={handleGenerate}
+            >
               Generate
             </Button>
             <Box

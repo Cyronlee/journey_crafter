@@ -21,13 +21,20 @@ import { FiSun } from "react-icons/fi";
 import { BiMapAlt } from "react-icons/bi";
 import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage, IChatMessage } from "@/types/chat";
+import MermaidWrapper from "@/components/MermairdWrapper";
+import mermaid from "mermaid";
+import { NodeJS } from "timers";
 
 export default function ChatPage() {
   const [prompt1, setPrompt1] = useState("");
   const [prompt2, setPrompt2] = useState("");
   const [userInput, setUserInput] = useState("");
 
+  const [mermaidData, setMermaidData] = useState(``);
+
   const [chatgptResponse, setChatgptResponse] = useState("");
+
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(null);
 
   const toast = useToast();
 
@@ -43,6 +50,9 @@ export default function ChatPage() {
       messages.push({ role: "user", content: userInput });
     }
     callChatGPT(messages);
+    // if (await isMermaidDataValid(userInput)) {
+    //   setMermaidData(userInput);
+    // }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -71,10 +81,36 @@ export default function ChatPage() {
         break;
       }
       const chunk = decoder.decode(value);
-      console.log(chunk);
       responseMessage += chunk;
       setChatgptResponse(responseMessage);
+      if (await isMermaidDataValid(responseMessage)) {
+        // setMermaidData(responseMessage);
+        updateMermaidData(responseMessage);
+      }
     }
+  };
+
+  const isMermaidDataValid = async (payload: string) => {
+    try {
+      await mermaid.parse(payload);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const updateMermaidData = (newValue: string) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    let timeout = setTimeout(() => {
+      console.log("triggered");
+      setMermaidData(newValue);
+      setTimeoutId(null);
+    }, 2000);
+
+    setTimeoutId(timeout);
   };
 
   return (
@@ -133,8 +169,8 @@ export default function ChatPage() {
             </Button>
             <Text
               whiteSpace="pre"
-              h="240px"
-              w="100%"
+              minH="240px"
+              maxW="960px"
               borderRadius="8px"
               borderColor="gray.200 !important"
               border="1px solid"
@@ -142,6 +178,14 @@ export default function ChatPage() {
             >
               {chatgptResponse}
             </Text>
+            <Box
+              h="700px"
+              borderRadius="8px"
+              borderColor="gray.200 !important"
+              border="1px solid"
+            >
+              <MermaidWrapper graphDefinition={mermaidData}></MermaidWrapper>
+            </Box>
           </VStack>
         </Box>
       </Container>

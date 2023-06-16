@@ -2,7 +2,7 @@
 
 import { Center, VStack } from "@chakra-ui/react";
 import ThemeToggle from "@/components/ThemeToggle";
-import JourneyMatrix from "@/components/JourneyMatrix";
+import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 
 export default function MermaidPage() {
   return (

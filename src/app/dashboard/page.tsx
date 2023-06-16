@@ -19,6 +19,7 @@ import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
+import UserJourney from "@/components/UserJourney";
 
 export default function ChatPage() {
   const [whoInputValue, setWhoInputValue] = useState("");
@@ -36,13 +37,9 @@ export default function ChatPage() {
         address: "Palo Alto, California",
       },
       scenario:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
-        " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created.",
+        "The quick brown fox jumps over the lazy dog is an English language pangram",
       goals:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
-        " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created.",
+        "The quick brown fox jumps over the lazy dog is an English language pangram a",
     },
     stages: [
       {
@@ -156,25 +153,9 @@ export default function ChatPage() {
             >
               Generate
             </Button>
-            <VStack
-              whiteSpace="pre"
-              minH="240px"
-              w="100%"
-              borderRadius="8px"
-              borderColor="gray.400 !important"
-              border="1px solid rgba(0, 0, 0, 0.06)"
-              p="0px"
-              boxShadow="0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05)"
-            >
-              <Center h="100%" w="100%">
-                <VStack>
-                  <JourneyHeaderWidget
-                    header={journey.header}
-                  ></JourneyHeaderWidget>
-                  <JourneyMatrix stages={journey.stages}></JourneyMatrix>
-                </VStack>
-              </Center>
-            </VStack>
+            <Box overflow="scroll" minH="240px" w="960px" py="8px">
+              <UserJourney userJourney={journey}></UserJourney>
+            </Box>
           </VStack>
         </Box>
       </Container>

@@ -69,7 +69,6 @@ const options = {
   },
 };
 
-const colors: string[] = ["#F2617A", "#6B9E78", "#47A1AD", "#634F7D"];
 const stageColors: string[] = [
   "green.500",
   "orange.500",
@@ -84,45 +83,36 @@ const stageColors: string[] = [
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   return (
-    <VStack display="flex" alignItems="flex-start">
-      <HStack alignItems="flex-start">
+    <VStack alignSelf="start" py="12px">
+      <HStack alignSelf="start">
         <VStack w="70px">
-          <Center w="100%" h="50px" marginBottom="5px" alignItems="center">
+          <Flex w="100%" h="50px" marginBottom="5px" alignItems="center">
             <Text
               fontSize="16px"
-              lineHeight="15px"
               fontWeight="bold"
-              mb="2px"
-              textAlign="right"
               transform="rotate(-90deg) translateY(30px)"
             >
               {"Stage"}
             </Text>
-          </Center>
-          <Center w="100%" h="70px" marginY="6px" alignItems="center">
+          </Flex>
+          <Flex w="100%" h="70px" marginY="6px" alignItems="center">
             <Text
               fontSize="16px"
-              lineHeight="15px"
               fontWeight="bold"
-              mb="2px"
-              textAlign="right"
               transform="rotate(-90deg) translateY(30px)"
             >
               {"Action"}
             </Text>
-          </Center>
-          <Center w="100%" h="70px" marginY="6px" alignItems="center">
+          </Flex>
+          <Flex w="100%" h="70px" marginY="6px" alignItems="center">
             <Text
               fontSize="16px"
-              lineHeight="15px"
               fontWeight="bold"
-              mb="2px"
-              textAlign="right"
-              transform="rotate(-90deg) translateY(30px)"
+              transform="rotate(-90deg) translateY(14px)"
             >
               {"Touch point"}
             </Text>
-          </Center>
+          </Flex>
         </VStack>
         {props.stages?.map((section, sectionIndex) => (
           <VStack key={sectionIndex} minW="160px">
@@ -149,7 +139,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     minH="70px"
                   >
                     <Box w="100%" minH="70px" m="5px" borderRadius="5px">
-                      <Text>{task.task}</Text>
+                      <Text>{task?.task}</Text>
                     </Box>
                   </Flex>
                   <Flex
@@ -161,7 +151,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     minH="70px"
                   >
                     <Box w="100%" minH="70px" m="5px" borderRadius="5px">
-                      <Text>{task.touchpoint}</Text>
+                      <Text>{task?.touchpoint}</Text>
                     </Box>
                   </Flex>
                   {/*<Box w="100%" h="104px">*/}
@@ -173,12 +163,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
           </VStack>
         ))}
       </HStack>
-      <HStack
-        w="100%"
-        h="140px"
-        alignItems="center"
-        justifyContent="flex-start"
-      >
+      <HStack w="100%" h="140px" alignSelf="start">
         <Center w="70px" marginY="5px">
           <Text
             fontSize="16px"

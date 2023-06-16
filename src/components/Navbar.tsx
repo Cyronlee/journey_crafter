@@ -49,10 +49,10 @@ const Navbar = () => {
               <MenuItem>Home</MenuItem>
             </Link>
             <Link href="/chat">
-              <MenuItem>Chat Page</MenuItem>
+              <MenuItem>Chat Demo</MenuItem>
             </Link>
-            <Link href="/train">
-              <MenuItem>Training Page</MenuItem>
+            <Link href="/mermaid">
+              <MenuItem>Mermaid Demo</MenuItem>
             </Link>
             <Link href="/dashboard">
               <MenuItem>Dashboard Page</MenuItem>

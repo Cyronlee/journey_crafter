@@ -28,8 +28,10 @@ import Navbar from "@/components/Navbar";
 import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
 import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
+import UserJourney from "@/components/UserJourney";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
+header:
   personal:
     name: test
     age: 18
@@ -71,13 +73,9 @@ export default function ChatPage() {
         address: "Palo Alto, California",
       },
       scenario:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
-        " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created.",
+        "The quick brown fox jumps over the lazy dog is an English language pangram a",
       goals:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a" +
-        " sentence that contains all of the letters of the English alphabet. Owing to" +
-        " its existence, Chakra was created.",
+        "The quick brown fox jumps over the lazy dog is an English language pangram a",
     },
     stages: [
       {
@@ -125,9 +123,7 @@ export default function ChatPage() {
       messages.push({ role: "user", content: userInput });
     }
     callChatGPT(messages);
-    // if (await isJourneyDataValid(userInput)) {
-    //   debouncedSetJourneyData(new JourneyFileParser(userInput).getJourney());
-    // }
+    // updateJourneyData(responseMessage, false);
   };
 
   const debouncedSetJourneyData = useMemo(() => debounced(setJourneyData), []);
@@ -159,15 +155,25 @@ export default function ChatPage() {
       setChatgptResponse(responseMessage);
 
       // stream update data
-      if (isJourneyDataValid(responseMessage)) {
-        debouncedSetJourneyData(
-          new JourneyFileParser(responseMessage).getJourney()
-        );
-      }
+      updateJourneyData(responseMessage, false);
     }
     // final update data
-    if (isJourneyDataValid(responseMessage)) {
-      setJourneyData(new JourneyFileParser(responseMessage).getJourney());
+    updateJourneyData(responseMessage, true);
+  };
+
+  const updateJourneyData = (chatgptResponse: string, isFinal: boolean) => {
+    let tempString = chatgptResponse;
+    const headerIndex = chatgptResponse.indexOf("header:");
+    if (headerIndex !== -1) {
+      tempString = chatgptResponse.substring(headerIndex);
+    }
+    if (isJourneyDataValid(tempString)) {
+      const validJourneyData = new JourneyFileParser(tempString).getJourney();
+      if (isFinal) {
+        setJourneyData(validJourneyData);
+      } else {
+        debouncedSetJourneyData(validJourneyData);
+      }
     }
   };
 
@@ -237,20 +243,8 @@ export default function ChatPage() {
               {chatgptResponse}
             </Text>
 
-            <Box
-              overflow="scroll"
-              minH="240px"
-              w="960px"
-              borderRadius="8px"
-              borderColor="gray.400 !important"
-              border="1px solid rgba(0, 0, 0, 0.06)"
-            >
-              <Box>
-                <JourneyHeaderWidget
-                  header={journeyData.header}
-                ></JourneyHeaderWidget>
-                <JourneyMatrix stages={journeyData.stages}></JourneyMatrix>
-              </Box>
+            <Box overflow="scroll" minH="240px" w="960px" py="8px">
+              <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>
         </Box>

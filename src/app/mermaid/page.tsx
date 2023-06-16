@@ -25,6 +25,7 @@ import MermaidWrapper from "@/components/MermairdWrapper";
 import mermaid from "mermaid";
 import { debounced } from "@/lib/debounce";
 import Navbar from "@/components/Navbar";
+import { JourneyFileParser } from "@/lib/JourneyFileParser";
 
 const initPrompt1 = `\`\`\`
 journey
@@ -76,9 +77,7 @@ export default function ChatPage() {
       messages.push({ role: "user", content: userInput });
     }
     callChatGPT(messages);
-    // if (await isMermaidDataValid(userInput)) {
-    //   debouncedSetMermaidData(userInput);
-    // }
+    //       updateMermaidData(responseMessage, false);
   };
 
   const debouncedSetMermaidData = useMemo(() => debounced(setMermaidData), []);
@@ -110,13 +109,28 @@ export default function ChatPage() {
       setChatgptResponse(responseMessage);
 
       // stream update mermaid data
-      if (await isMermaidDataValid(responseMessage)) {
-        debouncedSetMermaidData(responseMessage);
-      }
+      updateMermaidData(responseMessage, false);
     }
     // final update mermaid data
-    if (await isMermaidDataValid(responseMessage)) {
-      setMermaidData(responseMessage);
+    updateMermaidData(responseMessage, true);
+  };
+
+  const updateMermaidData = async (
+    chatgptResponse: string,
+    isFinal: boolean
+  ) => {
+    let tempString = chatgptResponse;
+    tempString = tempString.replace("```", "");
+    const headerIndex = chatgptResponse.indexOf("journey");
+    if (headerIndex !== -1) {
+      tempString = chatgptResponse.substring(headerIndex);
+    }
+    if (await isMermaidDataValid(tempString)) {
+      if (isFinal) {
+        setMermaidData(tempString);
+      } else {
+        debouncedSetMermaidData(tempString);
+      }
     }
   };
 

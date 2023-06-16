@@ -23,6 +23,7 @@ import React, { useState } from "react";
 
 export default function ChatPage() {
   const [inputValue, setInputValue] = useState("");
+  const toast = useToast();
   const handleGenerate = () => {
     alert("generate");
     if (inputValue.trim() === "") {

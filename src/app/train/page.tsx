@@ -23,7 +23,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { ChatMessage, IChatMessage } from "@/types/chat";
 import MermaidWrapper from "@/components/MermairdWrapper";
 import mermaid from "mermaid";
-import { NodeJS } from "timers";
+import { useDebounce } from "@/lib/debounce";
 
 export default function ChatPage() {
   const [prompt1, setPrompt1] = useState("");
@@ -34,14 +34,12 @@ export default function ChatPage() {
 
   const [chatgptResponse, setChatgptResponse] = useState("");
 
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>(null);
-
   const toast = useToast();
 
   const handleGenerate = async () => {
     let messages: ChatMessage[] = [];
     if (prompt1 !== "") {
-      messages.push({ role: "user", content: prompt1 });
+      messages.push({ role: "assistant", content: prompt1 });
     }
     if (prompt2 !== "") {
       messages.push({ role: "user", content: prompt2 });
@@ -51,16 +49,11 @@ export default function ChatPage() {
     }
     callChatGPT(messages);
     // if (await isMermaidDataValid(userInput)) {
-    //   setMermaidData(userInput);
+    //   debouncedSetMermaidData(userInput);
     // }
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleGenerate();
-    }
-  };
+  let debouncedSetMermaidData = useDebounce(setMermaidData);
 
   const callChatGPT = async (messages: ChatMessage[]) => {
     const response = await fetch("/api/generate", {
@@ -85,7 +78,7 @@ export default function ChatPage() {
       setChatgptResponse(responseMessage);
       if (await isMermaidDataValid(responseMessage)) {
         // setMermaidData(responseMessage);
-        updateMermaidData(responseMessage);
+        debouncedSetMermaidData(responseMessage);
       }
     }
   };
@@ -97,20 +90,6 @@ export default function ChatPage() {
     } catch (e) {
       return false;
     }
-  };
-
-  const updateMermaidData = (newValue: string) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    let timeout = setTimeout(() => {
-      console.log("triggered");
-      setMermaidData(newValue);
-      setTimeoutId(null);
-    }, 2000);
-
-    setTimeoutId(timeout);
   };
 
   return (
@@ -129,30 +108,29 @@ export default function ChatPage() {
           JourneyCrafter
         </Heading>
       </Flex>
-      <Container px="0" maxW="960px" centerContent>
+      <Container px="0" w="960px" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">
             <Flex mt="24px" mb="12px" alignItems="center" gap="6px">
               <Icon color="#CC850A" as={FiSun} />
-
               <Text>
                 Hi, you can generate a user journey map just by entering the
                 prompt. Give it a try now!
               </Text>
             </Flex>
-            <Heading size="sm">Prompt 1</Heading>
+            <Heading size="sm">Prompt 1 (role: assistant)</Heading>
             <Textarea
               borderColor="gray.200"
               value={prompt1}
               onChange={(e) => setPrompt1(e.target.value)}
             />
-            <Heading size="sm">Prompt 2</Heading>
+            <Heading size="sm">Prompt 2 (role: user)</Heading>
             <Textarea
               borderColor="gray.200"
               value={prompt2}
               onChange={(e) => setPrompt2(e.target.value)}
             />
-            <Heading size="sm">User Input</Heading>
+            <Heading size="sm">User Input (role: user)</Heading>
             <Textarea
               borderColor="gray.200"
               placeholder="Here is a sample placeholder"
@@ -170,7 +148,7 @@ export default function ChatPage() {
             <Text
               whiteSpace="pre"
               minH="240px"
-              maxW="960px"
+              w="960px"
               borderRadius="8px"
               borderColor="gray.200 !important"
               border="1px solid"

@@ -114,7 +114,7 @@ export default function Mermaid({
   // return <code className={"mermaid"}>{graphDefinition}</code>;
   return (
     <>
-      <Flex justifyContent="space-between">
+      <Flex p="4px" justifyContent="space-between">
         <Button size="sm" onClick={downloadSVG}>
           Download SVG
         </Button>

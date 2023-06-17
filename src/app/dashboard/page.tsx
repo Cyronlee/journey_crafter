@@ -66,7 +66,9 @@ export default function ChatPage() {
   const [journeyData, setJourneyData] = useState<Journey>(
     new JourneyFileParser(prodJourneyExampleData).getJourney()
   );
-  const [chatgptResponse, setChatgptResponse] = useState("");
+  const [chatgptResponse, setChatgptResponse] = useState(
+    "waiting for your operation..."
+  );
   useEffect(() => {
     scrollOutputRef.current.scrollTop = scrollOutputRef.current.scrollHeight;
   }, [scrollOutputRef?.current?.scrollHeight]);

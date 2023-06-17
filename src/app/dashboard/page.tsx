@@ -18,7 +18,7 @@ import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 import UserJourney from "@/components/UserJourney";
 import { prodJourneyExampleData } from "@/data/prod_journey_example";
-import { prompt } from "@/data/prompt";
+import { prodUserInputPrompt } from "@/data/prodUserInputPrompt";
 import { ChatMessage } from "@/types/chat";
 import { debounced } from "@/lib/debounce";
 
@@ -77,6 +77,7 @@ export default function ChatPage() {
     }
     startLoading();
     const userInputs = generateUserInputs(
+      prodUserInputPrompt,
       whoInputValue,
       businessDomainInputValue,
       wantToInputValue,
@@ -93,26 +94,23 @@ export default function ChatPage() {
     callChatGPT(messages);
   };
   const generateUserInputs = (
+    prompt: string,
     whoInputValue: string,
     businessDomainInputValue: string,
     wantToInputValue: string,
     keyBusinessInputValue: string,
     painPointInputValue: string
   ) => {
-    ``;
-    prompt.replaceAll("{业务领域}", businessDomainInputValue);
-    prompt.replaceAll("{角色}", whoInputValue);
-    prompt.replaceAll("{目标}", wantToInputValue);
-    prompt.replaceAll("{关键流程}", keyBusinessInputValue);
-    prompt.replaceAll("{痛点}", painPointInputValue);
-    return prompt;
+    let temp = prompt;
+    temp = temp.replaceAll("{业务领域}", businessDomainInputValue);
+    temp = temp.replaceAll("{角色}", whoInputValue);
+    temp = temp.replaceAll("{目标}", wantToInputValue);
+    temp = temp.replaceAll("{关键流程}", keyBusinessInputValue);
+    temp = temp.replaceAll("{痛点}", painPointInputValue);
+    return temp;
   };
 
   const debouncedSetJourneyData = useMemo(() => debounced(setJourneyData), []);
-
-  useEffect(() => {
-    console.log("useEffect");
-  }, []);
 
   const callChatGPT = async (messages: ChatMessage[]) => {
     const response = await fetch("/api/generate", {

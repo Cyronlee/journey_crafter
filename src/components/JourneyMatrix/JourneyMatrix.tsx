@@ -57,11 +57,13 @@ const options = {
   },
   scales: {
     x: {
+      display: false,
       ticks: {
         display: false,
       },
     },
     y: {
+      display: false,
       ticks: {
         display: false,
       },
@@ -189,7 +191,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             data={data}
             options={options}
             width={canvasWidth}
-            style={{ margin: "0 30px" }}
+            style={{ margin: "0 30px"}}
           />
         </Box>
       </HStack>

@@ -13,11 +13,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FiSun } from "react-icons/fi";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 import UserJourney from "@/components/UserJourney";
 import { journey2 } from "@/data/journey2";
+import { prompt } from "@/data/prompt";
+import { ChatMessage } from "@/types/chat";
+import { debounced } from "@/lib/debounce";
 
 export default function ChatPage() {
   const [buttonHoverStyle, setbuttonHoverStyle] = useState({
@@ -40,7 +43,16 @@ export default function ChatPage() {
   const [journey, setJourney] = useState<Journey>(
     new JourneyFileParser(journey2).getJourney()
   );
+  const scrollOutputRef: any = useRef();
+  const [journeyData, setJourneyData] = useState<Journey>(
+    new JourneyFileParser(journey2).getJourney()
+  );
+  const [chatgptResponse, setChatgptResponse] = useState("");
+  useEffect(() => {
+    scrollOutputRef.current.scrollTop = scrollOutputRef.current.scrollHeight;
+  }, [scrollOutputRef?.current?.scrollHeight]);
   const toast = useToast();
+  const [lastChunkUpdateTime, setlastChunkUpdateTime] = useState(new Date());
 
   const handleGenerate = () => {
     let value = painPointInputValue.trim();
@@ -59,12 +71,129 @@ export default function ChatPage() {
       return;
     }
     startLoading();
+    const prompt = generatePrompt(
+      whoInputValue,
+      businessDomainInputValue,
+      wantToInputValue,
+      keyBusinessInputValue,
+      painPointInputValue
+    );
+    //     const prompt = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
+    // header:
+    //   role: string
+    //   persona: string
+    //   scenario: string
+    //   goals: string
+    // stages:
+    //   - stage: string
+    //     tasks:
+    //       - task: string
+    //         touchpoint: string
+    //         emotion: number 1-3
+    //   - stage: string
+    //     tasks:
+    //       - task: string
+    //         touchpoint: string
+    //         emotion: number 1-3
+    //       - task: string
+    //         touchpoint: string
+    //         emotion: number 1-3
+    // `;
     setJourney(new JourneyFileParser(value).getJourney());
+    let messages: ChatMessage[] = [];
+    // messages.push({ role: "assistant", content: prompt });
+    messages.push({ role: "user", content: prompt });
+
+    callChatGPT(messages);
+  };
+  const generatePrompt = (
+    whoInputValue,
+    businessDomainInputValue,
+    wantToInputValue,
+    keyBusinessInputValue,
+    painPointInputValue
+  ) => {
+    prompt.replaceAll("{业务领域}", businessDomainInputValue);
+    prompt.replaceAll("{角色}", whoInputValue);
+    prompt.replaceAll("{目标}", wantToInputValue);
+    prompt.replaceAll("{关键流程}", keyBusinessInputValue);
+    prompt.replaceAll("{痛点}", painPointInputValue);
+    return prompt;
   };
 
+  const debouncedSetJourneyData = useMemo(() => debounced(setJourneyData), []);
+
+  useEffect(() => {
+    console.log("useEffect");
+  }, []);
+
+  const callChatGPT = async (messages: ChatMessage[]) => {
+    const response = await fetch("/api/generate", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(messages),
+    });
+
+    let responseMessage = "";
+    const reader = response?.body?.getReader();
+    const decoder = new TextDecoder();
+    while (true) {
+      // @ts-ignore
+      const { done, value } = await reader?.read();
+      if (done) {
+        break;
+      }
+      const chunk = decoder.decode(value);
+      responseMessage += chunk;
+      setChatgptResponse(responseMessage);
+
+      // stream update data
+      updateJourneyData(responseMessage, false);
+    }
+    // final update data
+    console.log(1);
+    updateJourneyData(responseMessage, true);
+    stopLoading();
+  };
+
+  const updateJourneyData = (chatgptResponse: string, isFinal: boolean) => {
+    let tempString = chatgptResponse;
+    const headerIndex = chatgptResponse.indexOf("header:");
+    if (headerIndex !== -1) {
+      tempString = chatgptResponse.substring(headerIndex);
+    }
+    const lastMarkdownIndex = tempString.lastIndexOf("```");
+    if (headerIndex !== -1) {
+      tempString = tempString.slice(0, lastMarkdownIndex);
+    }
+    if (isJourneyDataValid(tempString)) {
+      const validJourneyData = new JourneyFileParser(tempString).getJourney();
+      if (isFinal) {
+        setJourneyData(validJourneyData);
+      } else {
+        debouncedSetJourneyData(validJourneyData);
+      }
+    }
+  };
+
+  const isJourneyDataValid = (payload: string) => {
+    try {
+      new JourneyFileParser(payload);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
   const startLoading = () => {
     setIsLoadingValue(true);
     setbuttonHoverStyle({ bg: "" });
+  };
+
+  const stopLoading = () => {
+    setIsLoadingValue(false);
+    setbuttonHoverStyle({ bg: "#9054DF" });
   };
 
   return (
@@ -168,9 +297,23 @@ export default function ChatPage() {
               >
                 Generate
               </Button>
+              <Text
+                ref={scrollOutputRef}
+                background="gray.50"
+                whiteSpace="pre"
+                h="200px"
+                overflow="scroll"
+                w="80vw"
+                borderRadius="8px"
+                borderColor="gray.400 !important"
+                border="1px solid"
+                p="8px 16px"
+              >
+                {chatgptResponse}
+              </Text>
             </Flex>
-            <Box minH="240px" w="80vw" py="8px">
-              <UserJourney userJourney={journey}></UserJourney>
+            <Box overflow="scroll" minH="240px" w="80vw" py="8px">
+              <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>
         </Box>

@@ -98,34 +98,36 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   return (
     <VStack alignSelf="start" py="16px">
       <HStack alignSelf="start" gap="8px">
-        <VStack w="70px">
-          <Flex w="100%" h="50px" marginBottom="5px" alignItems="center">
+        <VStack w="100px" marginRight="-30px">
+          <Flex w="100%" h="50px" marginBottom="5px" alignItems="center" margin="0" padding="0" justifyContent="center">
             <Text
               fontSize="16px"
               fontWeight="bold"
-              transform="rotate(-90deg) translateY(30px)"
+              transform="rotate(-90deg)"
             >
               {"Stage"}
             </Text>
           </Flex>
-          <Flex w="100%" h="70px" marginY="6px" alignItems="center">
-            <Text
-              fontSize="16px"
-              fontWeight="bold"
-              transform="rotate(-90deg) translateY(30px)"
-            >
-              {"Action"}
-            </Text>
-          </Flex>
-          <Flex w="100%" h="70px" marginY="6px" alignItems="center">
-            <Text
-              fontSize="16px"
-              fontWeight="bold"
-              transform="rotate(-90deg) translateY(14px)"
-            >
-              {"Touch point"}
-            </Text>
-          </Flex>
+          <VStack>
+            <Flex w="100%" h="100px" marginY="6px" alignItems="center"  margin="0" padding="0" justifyContent="center">
+              <Text
+                fontSize="16px"
+                fontWeight="bold"
+                transform="rotate(-90deg)"
+              >
+                {"Action"}
+              </Text>
+            </Flex>
+            <Flex w="100%" h="100px" marginY="6px" alignItems="center" margin="0" padding="0" justifyContent="center">
+              <Text
+                fontSize="16px"
+                fontWeight="bold"
+                transform="rotate(-90deg)"
+              >
+                {"Touch point"}
+              </Text>
+            </Flex>
+          </VStack>
         </VStack>
         {props.stages?.map((section, sectionIndex) => (
           <VStack key={sectionIndex}>
@@ -177,14 +179,14 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
         ))}
       </HStack>
       <HStack w="100%" h="140px" alignSelf="start">
-        <Center w="70px">
+        <Center w="100px" justifyContent="center" marginRight="-30px">
           <Text
             fontSize="16px"
             lineHeight="15px"
             fontWeight="bold"
             mb="2px"
             textAlign="right"
-            transform="rotate(-90deg) translateY(30px)"
+            transform="rotate(-90deg)"
           >
             {"Emotion"}
           </Text>

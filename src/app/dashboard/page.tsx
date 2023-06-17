@@ -288,7 +288,7 @@ export default function ChatPage() {
                 background="gray.50"
                 whiteSpace="pre"
                 h="200px"
-                overflow="scroll"
+                overflow="auto"
                 w="80vw"
                 borderRadius="8px"
                 borderColor="gray.400 !important"
@@ -298,7 +298,7 @@ export default function ChatPage() {
                 {chatgptResponse}
               </Text>
             </Flex>
-            <Box overflow="scroll" minH="240px" w="80vw" py="8px">
+            <Box overflow="auto" minH="240px" w="80vw" py="8px">
               <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>

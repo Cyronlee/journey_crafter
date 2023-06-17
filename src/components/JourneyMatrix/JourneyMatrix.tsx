@@ -92,7 +92,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   console.log("emotionData is ", emotionData);
 
   return (
-    <VStack alignSelf="start" py="12px">
+    <VStack alignSelf="start" py="16px">
       <HStack alignSelf="start" gap="8px">
         <VStack w="70px">
           <Flex w="100%" h="50px" marginBottom="5px" alignItems="center">
@@ -140,24 +140,24 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
               {section.tasks?.map((task, taskIndex) => (
                 <VStack key={taskIndex}>
                   <Flex
-                    w="100%"
                     borderWidth="1px"
                     borderRadius="5px"
                     borderColor="gray.400"
-                    minW="150px"
-                    minH="70px"
+                    w="150px"
+                    h="100px"
+                    overflow="scroll"
                   >
                     <Box w="100%" minH="70px" borderRadius="5px" p="6px">
                       <Text>{task?.task}</Text>
                     </Box>
                   </Flex>
                   <Flex
-                    w="100%"
                     borderWidth="1px"
                     borderRadius="5px"
                     borderColor="gray.400"
-                    minW="120px"
-                    minH="70px"
+                    w="150px"
+                    h="100px"
+                    overflow="scroll"
                   >
                     <Box w="100%" minH="70px" borderRadius="5px" p="6px">
                       <Text>{task?.touchpoint}</Text>
@@ -197,7 +197,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             data={emotionData}
             options={options}
             width={canvasWidth}
-            style={{ margin: "0 30px"}}
+            style={{ margin: "0 30px" }}
           />
         </Box>
       </HStack>

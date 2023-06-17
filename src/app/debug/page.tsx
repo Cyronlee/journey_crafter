@@ -81,22 +81,22 @@ export default function ChatPage() {
       {
         stage: "进入商店",
         tasks: [
-          { task: "查看商品列表", touchpoint: "新用户", emotion: "好奇" },
-          { task: "点击商品", touchpoint: "新用户", emotion: "满意" },
+          { task: "查看商品列表", touchpoint: "新用户", emotion: 1 },
+          { task: "点击商品", touchpoint: "新用户", emotion: 2 },
         ],
       },
       {
         stage: "选择商品",
         tasks: [
-          { task: "浏览商品详情", touchpoint: "新用户", emotion: "好奇" },
-          { task: "加入购物车", touchpoint: "新用户", emotion: "满意" },
+          { task: "浏览商品详情", touchpoint: "新用户", emotion: 1 },
+          { task: "加入购物车", touchpoint: "新用户", emotion: 2 },
         ],
       },
       {
         stage: "结账",
         tasks: [
-          { task: "填写收货地址", touchpoint: "新用户", emotion: "紧张" },
-          { task: "支付订单", touchpoint: "新用户", emotion: "满意" },
+          { task: "填写收货地址", touchpoint: "新用户", emotion: 1 },
+          { task: "支付订单", touchpoint: "新用户", emotion: 3 },
         ],
       },
     ],

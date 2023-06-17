@@ -148,7 +148,7 @@ export default function ChatPage() {
     if (headerIndex !== -1) {
       tempString = chatgptResponse.substring(headerIndex);
     }
-    const lastMarkdownIndex = tempString.lastIndexOf("```");
+    const lastMarkdownIndex = tempString.lastIndexOf("end");
     if (headerIndex !== -1) {
       tempString = tempString.slice(0, lastMarkdownIndex);
     }

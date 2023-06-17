@@ -31,6 +31,7 @@ import { toPng } from "html-to-image";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
 \`\`\`
+begin
 header:
   role: string
   persona: string
@@ -50,6 +51,7 @@ stages:
       - task: string
         touchpoint: string
         emotion: number 1-3
+end
 \`\`\`
 `;
 
@@ -131,7 +133,7 @@ export default function ChatPage() {
     if (headerIndex !== -1) {
       tempString = tempString.substring(headerIndex);
     }
-    const lastMarkdownIndex = tempString.lastIndexOf("```");
+    const lastMarkdownIndex = tempString.lastIndexOf("end");
     if (headerIndex !== -1) {
       tempString = tempString.slice(0, lastMarkdownIndex);
     }

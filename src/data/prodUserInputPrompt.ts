@@ -5,8 +5,9 @@ TO-BE用户旅程需要包含改关键角色的Persona，并且按照时间顺�
 emotion 包含like，easiness，dislike，需要返回从1到3的一个数字，1代表dislike，2代表easiness，3代表dislike。
 emotions: What are the likes and dislikes of the audience at each individual task they perform. Is important if the can describe their feeling with simple adjectives.After completing each task we can reassure user’s feelings and needs by asking them what were their likes and dislikes of a given goal. Ask them to be sincere and specific with their words.
 Another key questions would be to ask users the easiness level they felt in each step of the process. If the tasks take too much effort means we need to reduce the stress of each action.
-请用中文返回，代码模版参考：
+请用中文返回，并按照下面的代码格式返回给我：
 \`\`\`
+begin
 header:
   role: string
   persona: string
@@ -17,14 +18,15 @@ stages:
     tasks:
       - task: string
         touchpoint: string
-        emotion: number 1-5
+        emotion: number 1-3
   - stage: string
     tasks:
       - task: string
         touchpoint: string
-        emotion: number 1-5
+        emotion: number 1-3
       - task: string
         touchpoint: string
-        emotion: number 1-5
+        emotion: number 1-3
+end
 \`\`\`
 `;

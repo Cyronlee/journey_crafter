@@ -16,14 +16,14 @@ header
 stage {string}
   action: {string}
   touchpoint:{string}
-  emotion:{1-5}
+  emotion:{1-3}
 
 stage {string}
   action: {string}
   touchpoint:{string}
-  emotion:{1-5}
+  emotion:{1-3}
 
   action: {string}
   touchpoint:{string}
-  emotion:{1-5}`,
+  emotion:{1-3}`,
 };

@@ -20,4 +20,4 @@ stages:
         emotion: 1
       - task: task3
         touchpoint: touchpoint3
-        emotion: 5
+        emotion: 2

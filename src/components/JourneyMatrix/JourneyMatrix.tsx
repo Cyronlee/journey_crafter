@@ -53,7 +53,7 @@ const options = {
         display: false,
       },
       min: 0,
-      max: 6,
+      max: 4
     },
   },
 };

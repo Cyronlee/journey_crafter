@@ -56,6 +56,12 @@ const options = {
       max: 3.5,
     },
   },
+  layout: {
+    padding: {
+      left: 45,
+      right: 45
+    }
+  }
 };
 
 const stageColors: string[] = [

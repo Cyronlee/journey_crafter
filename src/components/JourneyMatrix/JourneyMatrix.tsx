@@ -58,7 +58,20 @@ const options = {
   },
 };
 
-const stageColors: string[] = ["#F2617A", "#6B9E78", "#47A1AD", "#634F7D"];
+const stageColors: string[] = [
+  "#F2617A",
+  "#6B9E78",
+  "#47A1AD",
+  "#634F7D",
+  "#F2617A",
+  "#6B9E78",
+  "#47A1AD",
+  "#634F7D",
+  "#F2617A",
+  "#6B9E78",
+  "#47A1AD",
+  "#634F7D",
+];
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   const emotions = props.stages?.flatMap((stage) =>

@@ -60,17 +60,23 @@ const options = {
 
 const stageColors: string[] = [
   "#F2617A",
+  "#CC850A",
   "#6B9E78",
   "#47A1AD",
   "#634F7D",
+  "#003D4F",
   "#F2617A",
+  "#CC850A",
   "#6B9E78",
   "#47A1AD",
   "#634F7D",
+  "#003D4F",
   "#F2617A",
+  "#CC850A",
   "#6B9E78",
   "#47A1AD",
   "#634F7D",
+  "#003D4F",
 ];
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {

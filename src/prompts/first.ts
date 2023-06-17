@@ -13,17 +13,17 @@ header
   scenario:{}
   goals:{}
 
-stage {stage1}
-  action: {action1}
-  touchpoint:{touchpoint1}
-  emotion:{emotion1}
+stage {string}
+  action: {string}
+  touchpoint:{string}
+  emotion:{1-5}
 
-stage {stage2}
-  action: {action2}
-  touchpoint:{touchpoint2}
-  emotions:{emotion2}
+stage {string}
+  action: {string}
+  touchpoint:{string}
+  emotion:{1-5}
 
-  action: {action3}
-  touchpoint:{touchpoint3}
-  emotions:{emotion3}`,
+  action: {string}
+  touchpoint:{string}
+  emotion:{1-5}`,
 };

@@ -25,21 +25,6 @@ ChartJS.register(
 );
 ChartJS.defaults.scale.grid.display = false;
 
-const canvasWidth = `${6 * 165}px`;
-
-const data = {
-  labels: ["", "", "", "", "", ""],
-  datasets: [
-    {
-      label: "",
-      data: [1, 3, 2, 4, 2, 3],
-      fill: false,
-      borderColor: "rgba(75,192,192,1)",
-      tension: 0.1,
-    },
-  ],
-};
-
 const options = {
   showScale: false,
   responsive: true,
@@ -84,9 +69,31 @@ const stageColors: string[] = [
 ];
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
+  const emotions = props.stages?.flatMap((stage) =>
+    stage.tasks.map((task) => task.emotion)
+  );
+
+  const emotionData = {
+    labels: emotions.map(() => ""),
+    datasets: [
+      {
+        label: "emotion",
+        data: emotions,
+        fill: false,
+        borderColor: "rgba(75,192,192,1)",
+        tension: 0.1,
+      },
+    ],
+  };
+  const canvasWidth = `${
+    emotions?.length * 150 + (emotions?.length - 1) * 8
+  }px`;
+
+  console.log("emotionData is ", emotionData);
+
   return (
     <VStack alignSelf="start" py="12px">
-      <HStack alignSelf="start">
+      <HStack alignSelf="start" gap="8px">
         <VStack w="70px">
           <Flex w="100%" h="50px" marginBottom="5px" alignItems="center">
             <Text
@@ -117,7 +124,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
           </Flex>
         </VStack>
         {props.stages?.map((section, sectionIndex) => (
-          <VStack key={sectionIndex} minW="160px">
+          <VStack key={sectionIndex}>
             <Flex w="100%" color="white" h="50px">
               <Center
                 w="100%"
@@ -129,9 +136,9 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                 </Text>
               </Center>
             </Flex>
-            <HStack>
+            <HStack gap="8px">
               {section.tasks?.map((task, taskIndex) => (
-                <VStack p="5px" key={taskIndex}>
+                <VStack key={taskIndex}>
                   <Flex
                     w="100%"
                     borderWidth="1px"
@@ -140,7 +147,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     minW="150px"
                     minH="70px"
                   >
-                    <Box w="100%" minH="70px" m="5px" borderRadius="5px">
+                    <Box w="100%" minH="70px" borderRadius="5px" p="6px">
                       <Text>{task?.task}</Text>
                     </Box>
                   </Flex>
@@ -152,7 +159,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     minW="120px"
                     minH="70px"
                   >
-                    <Box w="100%" minH="70px" m="5px" borderRadius="5px">
+                    <Box w="100%" minH="70px" borderRadius="5px" p="6px">
                       <Text>{task?.touchpoint}</Text>
                     </Box>
                   </Flex>
@@ -166,7 +173,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
         ))}
       </HStack>
       <HStack w="100%" h="140px" alignSelf="start">
-        <Center w="70px" marginY="5px">
+        <Center w="70px">
           <Text
             fontSize="16px"
             lineHeight="15px"
@@ -185,10 +192,9 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
           borderColor="gray.400"
           borderRadius="md"
           p="4"
-          marginLeft="5px"
         >
           <Line
-            data={data}
+            data={emotionData}
             options={options}
             width={canvasWidth}
             style={{ margin: "0 30px"}}

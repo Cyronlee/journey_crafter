@@ -50,10 +50,10 @@ stages:
     tasks:
       - task: task2
         touchpoint: touchpoint2
-        emotions: emotion2
+        emotion: 2
       - task: task3
         touchpoint: touchpoint3
-        emotions: emotion3
+        emotion: 5
 `;
 
 const initPrompt2 = "记住，只返回代码";

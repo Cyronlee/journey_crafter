@@ -1,13 +1,24 @@
 "use client";
 
-import { Box, Button, Container, Flex, Heading, Icon, Text, Textarea, useToast, VStack, } from '@chakra-ui/react';
-import { FiSun } from 'react-icons/fi';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ChatMessage } from '@/types/chat';
-import { debounced } from '@/lib/debounce';
-import Navbar from '@/components/Navbar';
-import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
-import UserJourney from '@/components/UserJourney';
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  Text,
+  Textarea,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
+import { FiSun } from "react-icons/fi";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { ChatMessage } from "@/types/chat";
+import { debounced } from "@/lib/debounce";
+import Navbar from "@/components/Navbar";
+import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
+import UserJourney from "@/components/UserJourney";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
 header:
@@ -44,13 +55,6 @@ export default function ChatPage() {
 
   const [journeyData, setJourneyData] = useState<Journey>({
     header: {
-      personal: {
-        name: "Tom",
-        role: "UX Designer",
-        isSingle: true,
-        age: 32,
-        address: "Palo Alto, California",
-      },
       scenario:
         "The quick brown fox jumps over the lazy dog is an English language pangram a",
       goals:
@@ -168,7 +172,7 @@ export default function ChatPage() {
   return (
     <Box>
       <Navbar></Navbar>
-      <Container px="0" w="960px" centerContent>
+      <Container px="0" w="80vw" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">
             <Flex mt="24px" mb="12px" alignItems="center" gap="6px">
@@ -213,7 +217,7 @@ export default function ChatPage() {
               whiteSpace="pre"
               h="200px"
               overflow="scroll"
-              w="960px"
+              w="80vw"
               borderRadius="8px"
               borderColor="gray.400 !important"
               border="1px solid"
@@ -222,7 +226,7 @@ export default function ChatPage() {
               {chatgptResponse}
             </Text>
 
-            <Box overflow="scroll" minH="240px" w="960px" py="8px">
+            <Box overflow="scroll" minH="240px" w="80vw" py="8px">
               <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>

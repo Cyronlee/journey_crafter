@@ -1,9 +1,9 @@
 "use client";
 
-import { Box } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { Journey, JourneyFileParser, } from '@/lib/JourneyFileParser';
-import UserJourney from '@/components/UserJourney';
+import { Box } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
+import UserJourney from "@/components/UserJourney";
 
 export default function JourneyPage() {
   const [journey, setJourney] = useState<Journey>();

@@ -1,11 +1,26 @@
-import { Avatar, Box, Heading, HStack, Text, VStack, } from '@chakra-ui/react';
-import { JourneyHeader } from '@/lib/JourneyFileParser';
+import { JourneyHeader } from "@/lib/JourneyFileParser";
+import {
+  Box,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  VStack,
+  Flex,
+  Avatar,
+} from "@chakra-ui/react";
 
 export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
   return (
-    <HStack w="100%" borderBottom="1px solid rgba(0, 0, 0, 0.08)">
-      <Box w="50%" h="100%" padding={"20px 0px 20px 32px"} gap={"8px"}>
-        <HStack w="240px" h="72px">
+    <HStack
+      position="sticky"
+      left="0"
+      w="100%"
+      borderBottom="1px solid"
+      borderColor="gray.300"
+    >
+      <Box w="40%" padding={"20px 0px 20px 32px"} gap={"8px"}>
+        <HStack h="72px">
           <Box>
             <Avatar bg="teal.500" />
             {/*<Image*/}
@@ -27,7 +42,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                   lineHeight: "20px",
                 }}
               >
-                {props.header?.personal?.name}
+                Persona
               </Heading>
               <Text
                 w="100%"
@@ -37,37 +52,49 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                   fontWeight: "400",
                   lineHeight: "15px",
                 }}
+                whiteSpace={"normal"}
               >
-                {props.header?.personal?.role}
+                {props.header?.persona}
               </Text>
-              <Text
-                w="100%"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Inter",
-                  fontWeight: "400",
-                  lineHeight: "15px",
-                }}
-              >
-                {props.header?.personal?.isSingle ? "Single" : "Married"},{" "}
-                {props.header?.personal?.age} years old
-              </Text>
-              <Text
-                w="100%"
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Inter",
-                  fontWeight: "400",
-                  lineHeight: "15px",
-                }}
-              >
-                {props.header?.personal?.address}
-              </Text>
+              {/*<Text*/}
+              {/*  w="100%"*/}
+              {/*  style={{*/}
+              {/*    fontSize: "14px",*/}
+              {/*    fontFamily: "Inter",*/}
+              {/*    fontWeight: "400",*/}
+              {/*    lineHeight: "15px",*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  {props.header?.personal?.role}*/}
+              {/*</Text>*/}
+              {/*<Text*/}
+              {/*  w="100%"*/}
+              {/*  style={{*/}
+              {/*    fontSize: "14px",*/}
+              {/*    fontFamily: "Inter",*/}
+              {/*    fontWeight: "400",*/}
+              {/*    lineHeight: "15px",*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  {props.header?.personal?.isSingle ? "Single" : "Married"},{" "}*/}
+              {/*  {props.header?.personal?.age} years old*/}
+              {/*</Text>*/}
+              {/*<Text*/}
+              {/*  w="100%"*/}
+              {/*  style={{*/}
+              {/*    fontSize: "14px",*/}
+              {/*    fontFamily: "Inter",*/}
+              {/*    fontWeight: "400",*/}
+              {/*    lineHeight: "15px",*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  {props.header?.personal?.address}*/}
+              {/*</Text>*/}
             </VStack>
           </Box>
         </HStack>
       </Box>
-      <Box w="50%" h="100%" borderLeft="1px solid rgba(0, 0, 0, 0.08)">
+      <Box w="60%" h="100%" borderLeft="1px solid" borderColor="gray.300">
         <HStack padding="20px 40px" gap="40px" alignItems="flex-start">
           <Box w="200px">
             <VStack>

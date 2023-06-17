@@ -131,7 +131,7 @@ export default function ChatPage() {
   return (
     <Box>
       <Navbar></Navbar>
-      <Container px="0" w="960px" centerContent>
+      <Container px="0" w="80vw" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">
             <Flex mt="24px" mb="12px" alignItems="center" gap="6px">
@@ -172,7 +172,7 @@ export default function ChatPage() {
             <Text
               whiteSpace="pre"
               minH="240px"
-              w="960px"
+              w="80vw"
               borderRadius="8px"
               borderColor="gray.400 !important"
               border="1px solid"

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, Center, Flex, HStack, Text, VStack } from '@chakra-ui/react';
-import { Line } from 'react-chartjs-2';
-import './index.css';
+import React from "react";
+import { Box, Center, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import { Line } from "react-chartjs-2";
+import "./index.css";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -11,8 +11,8 @@ import {
   PointElement,
   Title,
   Tooltip,
-} from 'chart.js';
-import { JourneyStage } from '@/lib/JourneyFileParser';
+} from "chart.js";
+import { JourneyStage } from "@/lib/JourneyFileParser";
 
 ChartJS.register(
   CategoryScale,
@@ -53,7 +53,7 @@ const options = {
         display: false,
       },
       min: 0,
-      max: 6
+      max: 6,
     },
   },
 };
@@ -72,7 +72,7 @@ const stageColors: string[] = [
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   const emotions = props.stages?.flatMap((stage) =>
-    stage.tasks.map((task) => task.emotion)
+    stage.tasks?.map((task) => task.emotion)
   );
 
   const emotionData = {
@@ -137,7 +137,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                 bg={stageColors[sectionIndex]}
                 borderRadius="4px"
               >
-                <Text fontSize="xl" fontWeight="bold" mb="2px" marginY="auto">
+                <Text fontSize="16px" fontWeight="bold" mb="2px" marginY="auto">
                   {section.stage}
                 </Text>
               </Center>
@@ -154,7 +154,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     overflow="scroll"
                   >
                     <Box w="100%" minH="70px" borderRadius="5px" p="6px">
-                      <Text>{task?.task}</Text>
+                      <Text fontSize="14px">{task?.task}</Text>
                     </Box>
                   </Flex>
                   <Flex
@@ -166,7 +166,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     overflow="scroll"
                   >
                     <Box w="100%" minH="70px" borderRadius="5px" p="6px">
-                      <Text>{task?.touchpoint}</Text>
+                      <Text fontSize="14px">{task?.touchpoint}</Text>
                     </Box>
                   </Flex>
                   {/*<Box w="100%" h="104px">*/}

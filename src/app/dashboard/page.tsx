@@ -38,13 +38,6 @@ export default function ChatPage() {
     "There are a lot of spam (unqualified) leads in MQLs; sales reps are unsure why a lead was identified as qualified by Marketers and how to follow-up; Marketers are unaware if sales reps have followed up with MQLs and what actions were taken.";
   const [journey, setJourney] = useState<Journey>({
     header: {
-      personal: {
-        name: "Tom",
-        role: "UX Designer",
-        isSingle: true,
-        age: 32,
-        address: "Palo Alto, California",
-      },
       scenario:
         "The quick brown fox jumps over the lazy dog is an English language pangram",
       goals:
@@ -110,7 +103,7 @@ export default function ChatPage() {
   return (
     <Box>
       <Navbar></Navbar>
-      <Container px="0" maxW="960px" centerContent>
+      <Container px="0" maxW="80vw" centerContent>
         <Box px="8px" color="black">
           <VStack align="stretch">
             <Flex
@@ -199,7 +192,7 @@ export default function ChatPage() {
                 Generate
               </Button>
             </Flex>
-            <Box minH="240px" w="960px" py="8px">
+            <Box overflow="scroll" minH="240px" w="80vw" py="8px">
               <UserJourney userJourney={journey}></UserJourney>
             </Box>
           </VStack>

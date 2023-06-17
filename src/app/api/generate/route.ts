@@ -1,6 +1,10 @@
-import { ChatMessage } from '@/types/chat';
-import { NextRequest, NextResponse } from 'next/server';
-import { createParser, ParsedEvent, ReconnectInterval, } from 'eventsource-parser';
+import { ChatMessage } from "@/types/chat";
+import { NextRequest, NextResponse } from "next/server";
+import {
+  createParser,
+  ParsedEvent,
+  ReconnectInterval,
+} from "eventsource-parser";
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY as string;

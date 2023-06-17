@@ -1,11 +1,22 @@
 "use client";
 
-import { Box, Button, Container, Flex, Heading, Icon, Text, Textarea, useToast, VStack, } from '@chakra-ui/react';
-import { FiSun } from 'react-icons/fi';
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
-import UserJourney from '@/components/UserJourney';
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  Text,
+  Textarea,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
+import { FiSun } from "react-icons/fi";
+import React, { useState } from "react";
+import Navbar from "@/components/Navbar";
+import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
+import UserJourney from "@/components/UserJourney";
 
 export default function ChatPage() {
   const [isLoading, setIsLoadingValue] = useState(false);
@@ -158,19 +169,22 @@ export default function ChatPage() {
               isDisabled={isLoading}
               onChange={(e) => setPainPointInputValue(e.target.value)}
             />
-            <Flex alignItems="center"
-                  justifyContent="center"
-                  direction="column">
+            <Flex
+              alignItems="center"
+              justifyContent="center"
+              direction="column"
+            >
               <Button
                 w="129px"
                 h="48px"
-				mt="1.125rem"
-              	mb="1.5rem"
-				p={["10px", "24px"]}
+                mt="1.125rem"
+                mb="1.5rem"
+                p={["10px", "24px"]}
                 size="sm"
                 color="white"
                 backgroundColor="#634F7D"
                 fontSize="20px"
+                isLoading={isLoading}
                 onClick={handleGenerate}
               >
                 Generate

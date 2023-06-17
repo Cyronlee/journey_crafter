@@ -52,8 +52,8 @@ const options = {
       ticks: {
         display: false,
       },
-      min: 0,
-      max: 4,
+      min: 0.5,
+      max: 3.5,
     },
   },
 };
@@ -234,7 +234,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             borderWidth="1px"
             borderColor="gray.400"
             borderRadius="md"
-            p="4"
+            p="0"
           >
             <Line
               data={emotionData}

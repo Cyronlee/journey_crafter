@@ -20,7 +20,7 @@ import UserJourney from "@/components/UserJourney";
 
 export default function ChatPage() {
   const [buttonHoverStyle, setbuttonHoverStyle] = useState({
-    bg: "purple.500",
+    bg: "#9054DF",
   });
   const [isLoading, setIsLoadingValue] = useState(false);
   const [whoInputValue, setWhoInputValue] = useState("");
@@ -163,52 +163,62 @@ export default function ChatPage() {
                 the prompt. Give it a try now!
               </Text>
             </Flex>
-            <Text fontSize="sm">Who</Text>
+            <Text fontSize="14px" fontWeight="bold">
+              Who
+            </Text>
             <Textarea
               borderColor="gray.400"
               placeholder={whoInputPlaceHolder}
               value={whoInputValue}
-              fontSize="xs"
+              fontSize="14px"
               minH="1.5rem"
               isDisabled={isLoading}
               onChange={(e) => setWhoInputValue(e.target.value)}
             />
-            <Text fontSize="sm">Business domain</Text>
+            <Text fontSize="14px" fontWeight="bold">
+              Business domain
+            </Text>
             <Textarea
               borderColor="gray.400"
               placeholder={businessDomainPlaceHolder}
               value={businessDomainInputValue}
-              fontSize="xs"
+              fontSize="14px"
               minH="1.5rem"
               isDisabled={isLoading}
               onChange={(e) => setBusinessDomainInputValue(e.target.value)}
             />
-            <Text fontSize="sm">I want to</Text>
+            <Text fontSize="14px" fontWeight="bold">
+              I want to
+            </Text>
             <Textarea
               borderColor="gray.400"
               placeholder={wantToPlaceHolder}
               value={wantToInputValue}
-              fontSize="xs"
+              fontSize="14px"
               minH="1.5rem"
               isDisabled={isLoading}
               onChange={(e) => setWantToInputValue(e.target.value)}
             />
-            <Text fontSize="sm">Key business process</Text>
+            <Text fontSize="14px" fontWeight="bold">
+              Key business process
+            </Text>
             <Textarea
               borderColor="gray.400"
               placeholder={keyBusinessPlaceHolder}
               value={keyBusinessInputValue}
-              fontSize="xs"
-              minH="5.5rem"
+              fontSize="14px"
+              minH="6rem"
               isDisabled={isLoading}
               onChange={(e) => setKeyBusinessInputValue(e.target.value)}
             />
-            <Text fontSize="sm">Pain points</Text>
+            <Text fontSize="14px" fontWeight="bold">
+              Pain points
+            </Text>
             <Textarea
               borderColor="gray.400"
               placeholder={painPointPlaceHolder}
               value={painPointInputValue}
-              fontSize="xs"
+              fontSize="14px"
               minH="3.5rem"
               isDisabled={isLoading}
               onChange={(e) => setPainPointInputValue(e.target.value)}

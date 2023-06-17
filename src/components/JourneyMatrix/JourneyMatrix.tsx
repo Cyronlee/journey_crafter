@@ -72,7 +72,7 @@ const stageColors: string[] = [
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   const emotions = props.stages?.flatMap((stage) =>
-    stage.tasks?.map((task) => task.emotion)
+    stage?.tasks?.map((task) => task.emotion)
   );
 
   const emotionData = {
@@ -163,7 +163,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
               </Center>
             </Flex>
             <HStack gap="8px">
-              {section.tasks?.map((task, taskIndex) => (
+              {section?.tasks?.map((task, taskIndex) => (
                 <VStack key={taskIndex}>
                   <Flex
                     borderWidth="1px"

@@ -6,6 +6,7 @@ import {
   Container,
   Flex,
   Heading,
+  HStack,
   Icon,
   Text,
   Textarea,
@@ -13,13 +14,20 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FiSun } from "react-icons/fi";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { ChatMessage } from "@/types/chat";
 import { debounced } from "@/lib/debounce";
 import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 import UserJourney from "@/components/UserJourney";
 import { journey2 } from "@/data/journey2";
+import { toPng } from "html-to-image";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
 header:
@@ -50,7 +58,7 @@ export default function ChatPage() {
   const [prompt2, setPrompt2] = useState(initPrompt2);
   const [userInput, setUserInput] = useState("");
 
-  const buttonRef = useRef(null);
+  const screenshotRef = useRef<HTMLDivElement>(null);
 
   const [journeyData, setJourneyData] = useState<Journey>(
     new JourneyFileParser(journey2).getJourney()
@@ -121,6 +129,10 @@ export default function ChatPage() {
     if (headerIndex !== -1) {
       tempString = chatgptResponse.substring(headerIndex);
     }
+    const lastMarkdownIndex = tempString.lastIndexOf("```");
+    if (headerIndex !== -1) {
+      tempString = tempString.slice(0, lastMarkdownIndex);
+    }
     if (isJourneyDataValid(tempString)) {
       const validJourneyData = new JourneyFileParser(tempString).getJourney();
       if (isFinal) {
@@ -130,6 +142,22 @@ export default function ChatPage() {
       }
     }
   };
+  const handleSaveImage = useCallback(() => {
+    if (screenshotRef.current === null) {
+      return;
+    }
+
+    toPng(screenshotRef.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = "my-image-name.png";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [screenshotRef]);
 
   const isJourneyDataValid = (payload: string) => {
     try {
@@ -173,15 +201,15 @@ export default function ChatPage() {
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
             />
-            <Button
-              w="84px"
-              size="sm"
-              colorScheme="purple"
-              onClick={handleGenerate}
-            >
-              Generate
-            </Button>
-
+            <HStack>
+              <Button size="sm" colorScheme="purple" onClick={handleGenerate}>
+                Generate
+              </Button>
+              <Button size="sm" onClick={handleSaveImage}>
+                Save as image
+              </Button>
+            </HStack>
+            <Text fontWeight="bold">AI Response</Text>
             <Text
               ref={scrollOutputRef}
               background="gray.50"
@@ -197,7 +225,15 @@ export default function ChatPage() {
               {chatgptResponse}
             </Text>
 
-            <Box overflow="scroll" minH="240px" w="80vw" py="8px">
+            <Text fontWeight="bold">User Journey Map</Text>
+            <Box
+              overflow="scroll"
+              minH="240px"
+              w="80vw"
+              py="8px"
+              ref={screenshotRef}
+              bgColor="#FFF"
+            >
               <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>

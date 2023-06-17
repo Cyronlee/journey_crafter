@@ -19,6 +19,9 @@ import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 import UserJourney from "@/components/UserJourney";
 
 export default function ChatPage() {
+  const [buttonHoverStyle, setbuttonHoverStyle] = useState({
+    bg: "purple.500",
+  });
   const [isLoading, setIsLoadingValue] = useState(false);
   const [whoInputValue, setWhoInputValue] = useState("");
   const [businessDomainInputValue, setBusinessDomainInputValue] = useState("");
@@ -95,8 +98,13 @@ export default function ChatPage() {
       });
       return;
     }
-    setIsLoadingValue(true);
+    startLoading();
     setJourney(new JourneyFileParser(value).getJourney());
+  };
+
+  const startLoading = () => {
+    setIsLoadingValue(true);
+    setbuttonHoverStyle({ bg: "" });
   };
 
   return (
@@ -185,6 +193,7 @@ export default function ChatPage() {
                 backgroundColor="#634F7D"
                 fontSize="20px"
                 isLoading={isLoading}
+                _hover={buttonHoverStyle}
                 onClick={handleGenerate}
               >
                 Generate

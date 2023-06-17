@@ -19,7 +19,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
       borderBottom="1px solid"
       borderColor="gray.300"
     >
-      <Box w="40%" padding={"20px 0px 20px 32px"} gap={"8px"}>
+      <Box w="40%" padding={"10px 0px 10px 32px"} gap={"8px"}>
         <HStack h="72px">
           <Box>
             <Avatar bg="teal.500" />

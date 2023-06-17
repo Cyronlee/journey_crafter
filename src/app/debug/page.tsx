@@ -30,6 +30,7 @@ import { journey2 } from "@/data/journey2";
 import { toPng } from "html-to-image";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
+\`\`\`
 header:
   role: string
   persona: string
@@ -49,6 +50,7 @@ stages:
       - task: string
         touchpoint: string
         emotion: number 1-3
+\`\`\`
 `;
 
 const initPrompt2 = "记住，只返回代码";
@@ -125,14 +127,15 @@ export default function ChatPage() {
 
   const updateJourneyData = (chatgptResponse: string, isFinal: boolean) => {
     let tempString = chatgptResponse;
-    const headerIndex = chatgptResponse.indexOf("header:");
+    const headerIndex = tempString.indexOf("header:");
     if (headerIndex !== -1) {
-      tempString = chatgptResponse.substring(headerIndex);
+      tempString = tempString.substring(headerIndex);
     }
     const lastMarkdownIndex = tempString.lastIndexOf("```");
     if (headerIndex !== -1) {
       tempString = tempString.slice(0, lastMarkdownIndex);
     }
+    console.log(tempString);
     if (isJourneyDataValid(tempString)) {
       const validJourneyData = new JourneyFileParser(tempString).getJourney();
       if (isFinal) {

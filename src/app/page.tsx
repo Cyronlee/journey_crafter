@@ -1,7 +1,7 @@
 // app/page.tsx
 "use client";
 
-import { Box, Center, Text } from "@chakra-ui/react";
+import { Box, Center, Text, Link } from "@chakra-ui/react";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
@@ -12,6 +12,7 @@ export default function HomePage() {
         h="calc(100vh - 64px)"
         alignItems="center"
         className="gradient-card"
+        flexDirection="column"
       >
         <Text
           bgGradient="linear(to-l, #FFF, #FFF)"
@@ -21,6 +22,15 @@ export default function HomePage() {
         >
           Powerful User Journey AI Generator
         </Text>
+        <Link
+          textDecoration="underline"
+          href="/dashboard"
+          fontSize="36px"
+          color="#FFF"
+          fontWeight="extrabold"
+        >
+          Generate Now!
+        </Link>
       </Center>
     </Box>
   );

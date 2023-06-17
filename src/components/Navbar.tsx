@@ -1,8 +1,18 @@
-import React from 'react';
-import { Button, Flex, Heading, HStack, Icon, Menu, MenuButton, MenuItem, MenuList, } from '@chakra-ui/react';
-import { BiMapAlt } from 'react-icons/bi';
-import Link from 'next/link';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import React from "react";
+import {
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
+import { BiMapAlt } from "react-icons/bi";
+import Link from "next/link";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
   return (
@@ -31,17 +41,14 @@ const Navbar = () => {
             Pages
           </MenuButton>
           <MenuList>
-            <Link href="/">
-              <MenuItem>Home</MenuItem>
+            <Link href="/dashboard">
+              <MenuItem>Generate your journey ❤️</MenuItem>
             </Link>
             <Link href="/chat">
               <MenuItem>Chat Demo</MenuItem>
             </Link>
             <Link href="/mermaid">
               <MenuItem>Mermaid Demo</MenuItem>
-            </Link>
-            <Link href="/dashboard">
-              <MenuItem>Dashboard Page</MenuItem>
             </Link>
             <Link href="/journey">
               <MenuItem>Journey Demo</MenuItem>

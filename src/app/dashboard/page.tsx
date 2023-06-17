@@ -84,6 +84,9 @@ export default function ChatPage() {
       painPointInputValue
     );
 
+    console.log("user inputs:");
+    console.log(userInputs);
+
     let messages: ChatMessage[] = [];
     messages.push({ role: "user", content: userInputs });
 

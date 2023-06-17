@@ -93,8 +93,6 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
     emotions?.length * 150 + (emotions?.length - 1) * 8
   }px`;
 
-  // console.log("emotionData is ", emotionData);
-
   return (
     <VStack alignSelf="start" py="16px">
       <HStack alignSelf="start" gap="8px">

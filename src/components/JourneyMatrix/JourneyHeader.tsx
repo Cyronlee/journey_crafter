@@ -54,7 +54,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
                 }}
                 whiteSpace={"normal"}
               >
-                {props.header?.persona}
+                {props.header?.persona?.toString()}
               </Text>
               {/*<Text*/}
               {/*  w="100%"*/}

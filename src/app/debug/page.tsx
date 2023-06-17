@@ -22,28 +22,24 @@ import UserJourney from "@/components/UserJourney";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
 header:
-  personal:
-    name: test
-    age: 18
-    isSingle: false
-    role: dev
-    address: wuhan
-  scenario: simple_scenario
-  goals: simple_goals
+  role: string
+  persona: string
+  scenario: string
+  goals: string
 stages:
-  - stage: stage1
+  - stage: string
     tasks:
-      - task: task1
-        touchpoint: touchpoint1
-        emotion: emotion1
-  - stage: stage2
+      - task: string
+        touchpoint: string
+        emotion: number 1-5
+  - stage: string
     tasks:
-      - task: task2
-        touchpoint: touchpoint2
-        emotion: 2
-      - task: task3
-        touchpoint: touchpoint3
-        emotion: 5
+      - task: string
+        touchpoint: string
+        emotion: number 1-5
+      - task: string
+        touchpoint: string
+        emotion: number 1-5
 `;
 
 const initPrompt2 = "记住，只返回代码";
@@ -55,10 +51,11 @@ export default function ChatPage() {
 
   const [journeyData, setJourneyData] = useState<Journey>({
     header: {
-      scenario:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a",
+      persona:
+        "Emma, 32岁，市场营销专员，工作5年，熟悉公司的业务和市场，但对Salesforce的使用还不够熟练。",
+      scenario: "基于现有的定制化CRM来数字化MQL handover流程",
       goals:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a",
+        "简化MQL的识别和标记过程 - 提高MQL转化率 - 让销售和市场团队更好地协作",
     },
     stages: [
       {

@@ -38,10 +38,11 @@ export default function ChatPage() {
     "There are a lot of spam (unqualified) leads in MQLs; sales reps are unsure why a lead was identified as qualified by Marketers and how to follow-up; Marketers are unaware if sales reps have followed up with MQLs and what actions were taken.";
   const [journey, setJourney] = useState<Journey>({
     header: {
-      scenario:
-        "The quick brown fox jumps over the lazy dog is an English language pangram",
+      persona:
+        "Emma, 32岁，市场营销专员，工作5年，熟悉公司的业务和市场，但对Salesforce的使用还不够熟练。",
+      scenario: "基于现有的定制化CRM来数字化MQL handover流程",
       goals:
-        "The quick brown fox jumps over the lazy dog is an English language pangram a",
+        "简化MQL的识别和标记过程 - 提高MQL转化率 - 让销售和市场团队更好地协作",
     },
     stages: [
       {

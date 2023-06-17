@@ -12,7 +12,7 @@ export default function UserJourney({
 }) {
   return (
     <VStack
-      overflowX="scroll"
+      overflow="auto"
       borderRadius="8px"
       borderColor="gray.400 !important"
       border="1px solid"

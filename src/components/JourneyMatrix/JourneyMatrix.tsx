@@ -151,10 +151,10 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     borderColor="gray.400"
                     w="150px"
                     h="100px"
-                    overflow="scroll"
+                    overflow="auto"
                   >
                     <Box w="100%" minH="70px" borderRadius="5px" p="6px">
-                      <Text fontSize="14px">{task?.task}</Text>
+                      <Text fontSize="12px">{task?.task}</Text>
                     </Box>
                   </Flex>
                   <Flex
@@ -163,10 +163,10 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                     borderColor="gray.400"
                     w="150px"
                     h="100px"
-                    overflow="scroll"
+                    overflow="auto"
                   >
                     <Box w="100%" minH="70px" borderRadius="5px" p="6px">
-                      <Text fontSize="14px">{task?.touchpoint}</Text>
+                      <Text fontSize="12px">{task?.touchpoint}</Text>
                     </Box>
                   </Flex>
                   {/*<Box w="100%" h="104px">*/}

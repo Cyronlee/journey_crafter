@@ -71,6 +71,48 @@ export default function ChatPage() {
           { task: "支付订单", touchpoint: "新用户", emotion: 1 },
         ],
       },
+      {
+        stage: "选择商品",
+        tasks: [
+          { task: "浏览商品详情", touchpoint: "新用户", emotion: 3 },
+          { task: "加入购物车", touchpoint: "新用户", emotion: 1 },
+        ],
+      },
+      {
+        stage: "结账",
+        tasks: [
+          { task: "填写收货地址", touchpoint: "新用户", emotion: 2 },
+          { task: "支付订单", touchpoint: "新用户", emotion: 1 },
+        ],
+      },
+      {
+        stage: "选择商品",
+        tasks: [
+          { task: "浏览商品详情", touchpoint: "新用户", emotion: 3 },
+          { task: "加入购物车", touchpoint: "新用户", emotion: 1 },
+        ],
+      },
+      {
+        stage: "结账",
+        tasks: [
+          { task: "填写收货地址", touchpoint: "新用户", emotion: 2 },
+          { task: "支付订单", touchpoint: "新用户", emotion: 1 },
+        ],
+      },
+      {
+        stage: "选择商品",
+        tasks: [
+          { task: "浏览商品详情", touchpoint: "新用户", emotion: 3 },
+          { task: "加入购物车", touchpoint: "新用户", emotion: 1 },
+        ],
+      },
+      {
+        stage: "结账",
+        tasks: [
+          { task: "填写收货地址", touchpoint: "新用户", emotion: 2 },
+          { task: "支付订单", touchpoint: "新用户", emotion: 1 },
+        ],
+      },
     ],
   });
 
@@ -104,7 +146,7 @@ export default function ChatPage() {
   return (
     <Box>
       <Navbar></Navbar>
-      <Container px="0" maxW="80vw" centerContent>
+      <Container px="0" maxW="80vw" centerContent marginBottom="50px">
         <Box px="8px" color="black">
           <VStack align="stretch">
             <Flex
@@ -193,7 +235,7 @@ export default function ChatPage() {
                 Generate
               </Button>
             </Flex>
-            <Box overflow="scroll" minH="240px" w="80vw" py="8px">
+            <Box minH="240px" w="80vw" py="8px">
               <UserJourney userJourney={journey}></UserJourney>
             </Box>
           </VStack>

@@ -1,3 +1,4 @@
+export const journey2 = `
 header:
   role: Marketer
   persona: Emma, 32岁，市场营销专员，工作5年，熟悉公司的业务和市场，但对Salesforce的使用还不够熟练。
@@ -38,3 +39,4 @@ stages:
     - task: 优化MQL handover流程
       touchpoint: 根据反馈意见，及时优化MQL handover的流程和标准，提高MQL转化率和市场营销的效率。
       emotion: 2
+`;

@@ -1,3 +1,4 @@
+export const journey1 = `
 personal:
   name: user1
   age: 25
@@ -52,3 +53,4 @@ stages:
       - task: leave a review
         touchpoint: e-commerce website
         emotion: thoughtful
+`;

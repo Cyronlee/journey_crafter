@@ -52,8 +52,8 @@ const options = {
       ticks: {
         display: false,
       },
-      min: 0,
-      max: 4
+      min: 1,
+      max: 4,
     },
   },
 };
@@ -93,23 +93,35 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
     emotions?.length * 150 + (emotions?.length - 1) * 8
   }px`;
 
-  console.log("emotionData is ", emotionData);
+  // console.log("emotionData is ", emotionData);
 
   return (
     <VStack alignSelf="start" py="16px">
       <HStack alignSelf="start" gap="8px">
         <VStack w="100px" marginRight="-30px">
-          <Flex w="100%" h="50px" marginBottom="5px" alignItems="center" margin="0" padding="0" justifyContent="center">
-            <Text
-              fontSize="16px"
-              fontWeight="bold"
-              transform="rotate(-90deg)"
-            >
+          <Flex
+            w="100%"
+            h="50px"
+            marginBottom="5px"
+            alignItems="center"
+            margin="0"
+            padding="0"
+            justifyContent="center"
+          >
+            <Text fontSize="16px" fontWeight="bold" transform="rotate(-90deg)">
               {"Stage"}
             </Text>
           </Flex>
           <VStack>
-            <Flex w="100%" h="100px" marginY="6px" alignItems="center"  margin="0" padding="0" justifyContent="center">
+            <Flex
+              w="100%"
+              h="100px"
+              marginY="6px"
+              alignItems="center"
+              margin="0"
+              padding="0"
+              justifyContent="center"
+            >
               <Text
                 fontSize="16px"
                 fontWeight="bold"
@@ -118,7 +130,15 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                 {"Action"}
               </Text>
             </Flex>
-            <Flex w="100%" h="100px" marginY="6px" alignItems="center" margin="0" padding="0" justifyContent="center">
+            <Flex
+              w="100%"
+              h="100px"
+              marginY="6px"
+              alignItems="center"
+              margin="0"
+              padding="0"
+              justifyContent="center"
+            >
               <Text
                 fontSize="16px"
                 fontWeight="bold"

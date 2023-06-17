@@ -1,3 +1,4 @@
+export const prompt = `
 header:
   role: string
   persona: string
@@ -17,3 +18,4 @@ stages:
       - task: string
         touchpoint: string
         emotion: number 1-5
+`;

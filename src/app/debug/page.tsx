@@ -19,6 +19,7 @@ import { debounced } from "@/lib/debounce";
 import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 import UserJourney from "@/components/UserJourney";
+import { journey2 } from "@/data/journey2";
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
 header:
@@ -49,38 +50,11 @@ export default function ChatPage() {
   const [prompt2, setPrompt2] = useState(initPrompt2);
   const [userInput, setUserInput] = useState("");
 
-  const [journeyData, setJourneyData] = useState<Journey>({
-    header: {
-      persona:
-        "Emma, 32岁，市场营销专员，工作5年，熟悉公司的业务和市场，但对Salesforce的使用还不够熟练。",
-      scenario: "基于现有的定制化CRM来数字化MQL handover流程",
-      goals:
-        "简化MQL的识别和标记过程 - 提高MQL转化率 - 让销售和市场团队更好地协作",
-    },
-    stages: [
-      {
-        stage: "进入商店",
-        tasks: [
-          { task: "查看商品列表", touchpoint: "新用户", emotion: 1 },
-          { task: "点击商品", touchpoint: "新用户", emotion: 2 },
-        ],
-      },
-      {
-        stage: "选择商品",
-        tasks: [
-          { task: "浏览商品详情", touchpoint: "新用户", emotion: 1 },
-          { task: "加入购物车", touchpoint: "新用户", emotion: 2 },
-        ],
-      },
-      {
-        stage: "结账",
-        tasks: [
-          { task: "填写收货地址", touchpoint: "新用户", emotion: 1 },
-          { task: "支付订单", touchpoint: "新用户", emotion: 3 },
-        ],
-      },
-    ],
-  });
+  const buttonRef = useRef(null);
+
+  const [journeyData, setJourneyData] = useState<Journey>(
+    new JourneyFileParser(journey2).getJourney()
+  );
 
   const [chatgptResponse, setChatgptResponse] = useState("");
 

@@ -56,7 +56,6 @@ export async function POST(req: NextRequest) {
           console.log(data);
           console.log("----");
           // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
-          const json = JSON.parse(data);
           if (data === "[DONE]" || data.includes('"finish_reason":"stop"')) {
             console.log("event done")
             controller.close();

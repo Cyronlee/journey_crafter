@@ -76,6 +76,7 @@ export default function ChatPage() {
       return;
     }
     startLoading();
+    scrollToBottom();
     const userInputs = generateUserInputs(
       prodUserInputPrompt,
       whoInputValue,
@@ -180,6 +181,13 @@ export default function ChatPage() {
     setButtonHoverStyle({ bg: "#9054DF" });
   };
 
+  function scrollToBottom() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <Box>
       <Navbar></Navbar>
@@ -269,9 +277,8 @@ export default function ChatPage() {
                 w="129px"
                 h="48px"
                 mt="1.125rem"
-                mb="1.5rem"
+                mb="0.875rem"
                 p={["10px", "24px"]}
-                size="sm"
                 color="white"
                 backgroundColor="#634F7D"
                 fontSize="20px"
@@ -281,22 +288,24 @@ export default function ChatPage() {
               >
                 Generate
               </Button>
-              <Text
-                ref={scrollOutputRef}
-                background="gray.50"
-                whiteSpace="pre"
-                h="200px"
-                overflow="auto"
-                w="80vw"
-                borderRadius="8px"
-                borderColor="gray.400 !important"
-                border="1px solid"
-                p="8px 16px"
-              >
-                {chatgptResponse}
-              </Text>
             </Flex>
-            <Box minH="240px" w="80vw" py="8px">
+            <Text fontWeight="bold">AI response</Text>
+            <Text
+              ref={scrollOutputRef}
+              background="gray.50"
+              whiteSpace="pre"
+              h="200px"
+              overflow="auto"
+              w="80vw"
+              borderRadius="8px"
+              borderColor="gray.400 !important"
+              border="1px solid"
+              p="8px 16px"
+            >
+              {chatgptResponse}
+            </Text>
+            <Text fontWeight="bold">User journey map</Text>
+            <Box minH="240px" w="80vw" py="8px" p="0">
               <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>

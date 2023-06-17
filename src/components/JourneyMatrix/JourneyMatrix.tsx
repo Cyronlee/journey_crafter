@@ -141,9 +141,12 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
           <VStack key={sectionIndex}>
             <Flex w="100%" color="white" h="50px">
               <Center
-                w="100%"
+                w={`${
+                  section.tasks?.length * 150 + (section.tasks?.length - 1) * 8
+                }px`}
                 bg={stageColors[sectionIndex]}
                 borderRadius="4px"
+                px="4px"
               >
                 <Text fontSize="16px" fontWeight="bold" mb="2px" marginY="auto">
                   {section.stage}

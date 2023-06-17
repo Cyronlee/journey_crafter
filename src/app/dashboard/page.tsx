@@ -145,9 +145,9 @@ export default function ChatPage() {
 
   const updateJourneyData = (chatgptResponse: string, isFinal: boolean) => {
     let tempString = chatgptResponse;
-    const headerIndex = chatgptResponse.indexOf("header:");
+    const headerIndex = tempString.indexOf("header:");
     if (headerIndex !== -1) {
-      tempString = chatgptResponse.substring(headerIndex);
+      tempString = tempString.substring(headerIndex);
     }
     const lastMarkdownIndex = tempString.lastIndexOf("end");
     if (headerIndex !== -1) {

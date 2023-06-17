@@ -1,13 +1,5 @@
-import {
-  Box,
-  Heading,
-  HStack,
-  Image,
-  Text,
-  VStack,
-  Avatar,
-} from "@chakra-ui/react";
-import { JourneyHeader } from "@/lib/JourneyFileParser";
+import { Avatar, Box, Heading, HStack, Text, VStack, } from '@chakra-ui/react';
+import { JourneyHeader } from '@/lib/JourneyFileParser';
 
 export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
   return (

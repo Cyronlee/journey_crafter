@@ -1,34 +1,13 @@
 "use client";
 
-import {
-  Box,
-  VStack,
-  Text,
-  Flex,
-  Center,
-  Heading,
-  Input,
-  Button,
-  Textarea,
-  InputGroup,
-  InputRightElement,
-  useToast,
-  useColorModeValue,
-  Container,
-  Icon,
-} from "@chakra-ui/react";
-import { FiSun } from "react-icons/fi";
-import { BiMapAlt } from "react-icons/bi";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { ChatMessage, IChatMessage } from "@/types/chat";
-import MermaidWrapper from "@/components/MermairdWrapper";
-import mermaid from "mermaid";
-import { debounced } from "@/lib/debounce";
-import Navbar from "@/components/Navbar";
-import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
-import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
-import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
-import UserJourney from "@/components/UserJourney";
+import { Box, Button, Container, Flex, Heading, Icon, Text, Textarea, useToast, VStack, } from '@chakra-ui/react';
+import { FiSun } from 'react-icons/fi';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { ChatMessage } from '@/types/chat';
+import { debounced } from '@/lib/debounce';
+import Navbar from '@/components/Navbar';
+import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
+import UserJourney from '@/components/UserJourney';
 
 const initPrompt1 = `我会给你一个需求，你要分析用户旅程中的stage和task，并按照下面的代码格式返回给我：
 header:

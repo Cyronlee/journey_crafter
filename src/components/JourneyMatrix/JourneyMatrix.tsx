@@ -1,18 +1,18 @@
-import React from "react";
-import { Text, VStack, HStack, Flex, Center, Box } from "@chakra-ui/react";
-import { Line } from "react-chartjs-2";
-import "./index.css";
+import React from 'react';
+import { Box, Center, Flex, HStack, Text, VStack } from '@chakra-ui/react';
+import { Line } from 'react-chartjs-2';
+import './index.css';
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
   Legend,
   LinearScale,
   LineElement,
   PointElement,
   Title,
   Tooltip,
-} from "chart.js";
-import { JourneyStage } from "@/lib/JourneyFileParser";
+} from 'chart.js';
+import { JourneyStage } from '@/lib/JourneyFileParser';
 
 ChartJS.register(
   CategoryScale,

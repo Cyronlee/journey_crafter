@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
-import React, { memo } from "react";
+import dynamic from 'next/dynamic';
+import React, { memo } from 'react';
 
 function MermaidWrapper({ graphDefinition }: { graphDefinition: string }) {
   const MermaidDynamic = dynamic(() => import("./Mermaid"), { ssr: false });

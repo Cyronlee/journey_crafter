@@ -1,25 +1,11 @@
 "use client";
 
-import {
-  Box,
-  VStack,
-  Text,
-  Flex,
-  Center,
-  Heading,
-  Button,
-  Textarea,
-  useToast,
-  Container,
-  Icon,
-} from "@chakra-ui/react";
-import { FiSun } from "react-icons/fi";
-import React, { useState } from "react";
-import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
-import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
-import Navbar from "@/components/Navbar";
-import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
-import UserJourney from "@/components/UserJourney";
+import { Box, Button, Container, Flex, Heading, Icon, Text, Textarea, useToast, VStack, } from '@chakra-ui/react';
+import { FiSun } from 'react-icons/fi';
+import React, { useState } from 'react';
+import Navbar from '@/components/Navbar';
+import { Journey, JourneyFileParser } from '@/lib/JourneyFileParser';
+import UserJourney from '@/components/UserJourney';
 
 export default function ChatPage() {
   const [whoInputValue, setWhoInputValue] = useState("");

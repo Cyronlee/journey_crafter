@@ -1,5 +1,5 @@
-import { Box, Text, Avatar, useColorModeValue } from "@chakra-ui/react";
-import moment from "moment";
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import moment from 'moment';
 
 function ChatMessage({ message, isMe }: { message: any; isMe: boolean }) {
   const bgColor = useColorModeValue("white", "gray.700");

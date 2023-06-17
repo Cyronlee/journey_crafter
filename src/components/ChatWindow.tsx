@@ -1,21 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
-import {
-  Box,
-  VStack,
-  Text,
-  Flex,
-  Center,
-  Heading,
-  Input,
-  Button,
-  InputGroup,
-  InputRightElement,
-  useToast,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import ChatMessage from "@/components/ChatMessage";
-import { IChatMessage } from "@/types/chat";
+import { Box, Button, Input, InputGroup, InputRightElement, Text, useToast, VStack, } from '@chakra-ui/react';
+import ChatMessage from '@/components/ChatMessage';
+import { IChatMessage } from '@/types/chat';
 
 function ChatWindow() {
   const [messages, setMessages] = useState<IChatMessage[]>([]);

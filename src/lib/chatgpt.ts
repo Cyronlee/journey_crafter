@@ -1,4 +1,4 @@
-import type { ChatMessage } from "@/types/chat";
+import type { ChatMessage } from '@/types/chat';
 
 export const generateRequestBody = (
   apiKey: string,

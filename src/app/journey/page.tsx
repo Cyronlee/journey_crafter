@@ -1,16 +1,9 @@
 "use client";
 
-import { Box, VStack } from "@chakra-ui/react";
-import JourneyMatrix from "@/components/JourneyMatrix/JourneyMatrix";
-import { JourneyHeaderWidget } from "@/components/JourneyMatrix/JourneyHeader";
-import { useEffect, useState } from "react";
-import {
-  Journey,
-  JourneyFileParser,
-  JourneyHeader,
-  JourneyStage,
-} from "@/lib/JourneyFileParser";
-import UserJourney from "@/components/UserJourney";
+import { Box } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { Journey, JourneyFileParser, } from '@/lib/JourneyFileParser';
+import UserJourney from '@/components/UserJourney';
 
 export default function JourneyPage() {
   const [journey, setJourney] = useState<Journey>();

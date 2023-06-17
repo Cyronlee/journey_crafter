@@ -1,4 +1,4 @@
-import {load} from "js-yaml"
+import { load } from 'js-yaml'
 
 export interface PersonInfo {
     name?: string;

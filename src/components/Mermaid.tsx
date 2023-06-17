@@ -1,10 +1,10 @@
 "use client";
 
-import "client-only";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import svgPanZoom from "svg-pan-zoom";
-import { Button, Flex } from "@chakra-ui/react";
-import mermaid from "mermaid";
+import 'client-only';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import svgPanZoom from 'svg-pan-zoom';
+import { Button, Flex } from '@chakra-ui/react';
+import mermaid from 'mermaid';
 
 let currentId = 0;
 const uuid = () => `mermaid-${(currentId++).toString()}`;

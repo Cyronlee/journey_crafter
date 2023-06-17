@@ -1,20 +1,8 @@
 // app/page.tsx
 "use client";
 
-import {
-  Box,
-  Center,
-  Flex,
-  Container,
-  Heading,
-  Stack,
-  Text,
-  Button,
-  Icon,
-  IconProps,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import Navbar from "@/components/Navbar";
+import { Box, Center, Text, } from '@chakra-ui/react';
+import Navbar from '@/components/Navbar';
 
 export default function HomePage() {
   return (

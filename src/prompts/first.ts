@@ -1,4 +1,4 @@
-import { ChatMessage } from "@/types/chat";
+import { ChatMessage } from '@/types/chat';
 
 export const promptMessage: ChatMessage = {
   role: "assistant",

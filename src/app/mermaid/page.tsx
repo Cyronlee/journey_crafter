@@ -1,31 +1,13 @@
 "use client";
 
-import {
-  Box,
-  VStack,
-  Text,
-  Flex,
-  Center,
-  Heading,
-  Input,
-  Button,
-  Textarea,
-  InputGroup,
-  InputRightElement,
-  useToast,
-  useColorModeValue,
-  Container,
-  Icon,
-} from "@chakra-ui/react";
-import { FiSun } from "react-icons/fi";
-import { BiMapAlt } from "react-icons/bi";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { ChatMessage, IChatMessage } from "@/types/chat";
-import MermaidWrapper from "@/components/MermairdWrapper";
-import mermaid from "mermaid";
-import { debounced } from "@/lib/debounce";
-import Navbar from "@/components/Navbar";
-import { JourneyFileParser } from "@/lib/JourneyFileParser";
+import { Box, Button, Container, Flex, Heading, Icon, Text, Textarea, useToast, VStack, } from '@chakra-ui/react';
+import { FiSun } from 'react-icons/fi';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ChatMessage } from '@/types/chat';
+import MermaidWrapper from '@/components/MermairdWrapper';
+import mermaid from 'mermaid';
+import { debounced } from '@/lib/debounce';
+import Navbar from '@/components/Navbar';
 
 const initPrompt1 = `\`\`\`
 journey

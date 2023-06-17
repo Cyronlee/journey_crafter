@@ -46,7 +46,7 @@ export default function ChatPage() {
 
   const [isLoading, setIsLoadingValue] = useState(false);
   const [buttonHoverStyle, setButtonHoverStyle] = useState({
-    bg: "#9054DF",
+    bg: "#7651A6",
   });
 
   const scrollOutputRef: any = useRef();

@@ -218,7 +218,7 @@ export default function ChatPage() {
               background="gray.50"
               whiteSpace="pre"
               h="200px"
-              overflow="scroll"
+              overflow="auto"
               w="80vw"
               borderRadius="8px"
               borderColor="gray.400 !important"
@@ -230,7 +230,6 @@ export default function ChatPage() {
 
             <Text fontWeight="bold">User Journey Map</Text>
             <Box
-              overflow="scroll"
               minH="240px"
               w="80vw"
               py="8px"

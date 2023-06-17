@@ -1,3 +1,6 @@
+// TODO 注意！通过这几个关键词来填充下方的最终用户输入
+const rule = ["{业务领域}", "{角色}", "{目标}", "{关键流程}", "{痛点}"];
+
 export const prodUserInputPrompt: string = `
 Context：{目标}。用户的关键流程主要为{关键流程}。
 {角色}目前存在以下痛点：{痛点}等

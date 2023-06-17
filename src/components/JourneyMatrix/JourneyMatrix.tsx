@@ -211,7 +211,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             {"Emotion"}
           </Text>
         </Center>
-        <Box
+        { emotions?.length > 0 && <Box
           w={canvasWidth}
           h="100%"
           borderWidth="1px"
@@ -225,7 +225,7 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             width={canvasWidth}
             style={{ margin: "0 30px" }}
           />
-        </Box>
+        </Box>}
       </HStack>
     </VStack>
   );

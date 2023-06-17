@@ -58,17 +58,7 @@ const options = {
   },
 };
 
-const stageColors: string[] = [
-  "green.500",
-  "orange.500",
-  "yellow.500",
-  "teal.500",
-  "red.500",
-  "blue.500",
-  "cyan.500",
-  "purple.500",
-  "pink.500",
-];
+const stageColors: string[] = ["#F2617A", "#6B9E78", "#47A1AD", "#634F7D"];
 
 const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
   const emotions = props.stages?.flatMap((stage) =>
@@ -209,21 +199,23 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
             {"Emotion"}
           </Text>
         </Center>
-        { emotions?.length > 0 && <Box
-          w={canvasWidth}
-          h="100%"
-          borderWidth="1px"
-          borderColor="gray.400"
-          borderRadius="md"
-          p="4"
-        >
-          <Line
-            data={emotionData}
-            options={options}
-            width={canvasWidth}
-            style={{ margin: "0 30px" }}
-          />
-        </Box>}
+        {emotions?.length > 0 && (
+          <Box
+            w={canvasWidth}
+            h="100%"
+            borderWidth="1px"
+            borderColor="gray.400"
+            borderRadius="md"
+            p="4"
+          >
+            <Line
+              data={emotionData}
+              options={options}
+              width={canvasWidth}
+              style={{ margin: "0 30px" }}
+            />
+          </Box>
+        )}
       </HStack>
     </VStack>
   );

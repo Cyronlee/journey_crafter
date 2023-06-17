@@ -167,7 +167,13 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
                 borderRadius="4px"
                 px="4px"
               >
-                <Text fontSize="14px" fontWeight="bold" mb="2px" marginY="auto">
+                <Text
+                  fontSize="14px"
+                  textAlign="center"
+                  fontWeight="bold"
+                  mb="2px"
+                  marginY="auto"
+                >
                   {section.stage}
                 </Text>
               </Center>

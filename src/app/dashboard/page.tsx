@@ -6,14 +6,24 @@ import {
   Container,
   Flex,
   Heading,
+  HStack,
   Icon,
   Text,
   Textarea,
   useToast,
   VStack,
+  IconButton,
 } from "@chakra-ui/react";
+import { DownloadIcon } from "@chakra-ui/icons";
+
 import { FiSun } from "react-icons/fi";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Navbar from "@/components/Navbar";
 import { Journey, JourneyFileParser } from "@/lib/JourneyFileParser";
 import UserJourney from "@/components/UserJourney";
@@ -21,6 +31,7 @@ import { prodJourneyExampleData } from "@/data/prod_journey_example";
 import { prodUserInputPrompt } from "@/data/prodUserInputPrompt";
 import { ChatMessage } from "@/types/chat";
 import { debounced } from "@/lib/debounce";
+import { toPng } from "html-to-image";
 
 const whoInputPlaceHolder = "I am a project manager.";
 const businessDomainPlaceHolder = "MQL、CRM、Salesforce, etc.";
@@ -49,7 +60,9 @@ export default function ChatPage() {
     bg: "#7651A6",
   });
 
+  const screenshotRef = useRef<HTMLDivElement>(null);
   const scrollOutputRef: any = useRef();
+
   const [journeyData, setJourneyData] = useState<Journey>(
     new JourneyFileParser(prodJourneyExampleData).getJourney()
   );
@@ -58,7 +71,23 @@ export default function ChatPage() {
     scrollOutputRef.current.scrollTop = scrollOutputRef.current.scrollHeight;
   }, [scrollOutputRef?.current?.scrollHeight]);
   const toast = useToast();
-  const [lastChunkUpdateTime, setlastChunkUpdateTime] = useState(new Date());
+
+  const handleSaveImage = useCallback(() => {
+    if (screenshotRef.current === null) {
+      return;
+    }
+
+    toPng(screenshotRef.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = "my-image-name.png";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [screenshotRef]);
 
   const handleGenerate = () => {
     if (
@@ -139,7 +168,10 @@ export default function ChatPage() {
       updateJourneyData(responseMessage, false);
     }
     // final update
-    updateJourneyData(responseMessage, true);
+    console.log("generate finished");
+    setTimeout(() => {
+      updateJourneyData(responseMessage + "```", true);
+    }, 1500);
     stopLoading();
   };
 
@@ -153,6 +185,7 @@ export default function ChatPage() {
     if (headerIndex !== -1) {
       tempString = tempString.slice(0, lastMarkdownIndex);
     }
+    console.log(tempString);
     if (isJourneyDataValid(tempString)) {
       const validJourneyData = new JourneyFileParser(tempString).getJourney();
       if (isFinal) {
@@ -304,8 +337,30 @@ export default function ChatPage() {
             >
               {chatgptResponse}
             </Text>
-            <Text fontWeight="bold">User journey map</Text>
-            <Box minH="240px" w="80vw" py="8px" p="0">
+            <HStack>
+              <Text fontWeight="bold">User journey map</Text>
+              <IconButton
+                variant="outline"
+                borderWidth="0"
+                size="sm"
+                color="#60517A"
+                aria-label="Call Sage"
+                onClick={handleSaveImage}
+                fontSize="20px"
+                icon={<DownloadIcon />}
+              />
+              {/*<Button w="160px" size="sm">*/}
+              {/*  Save as png image*/}
+              {/*</Button>*/}
+            </HStack>
+            <Box
+              minH="240px"
+              w="80vw"
+              py="8px"
+              p="0"
+              ref={screenshotRef}
+              bgColor="#FFF"
+            >
               <UserJourney userJourney={journeyData}></UserJourney>
             </Box>
           </VStack>

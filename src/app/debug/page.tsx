@@ -147,6 +147,7 @@ export default function ChatPage() {
       }
     }
   };
+
   const handleSaveImage = useCallback(() => {
     if (screenshotRef.current === null) {
       return;

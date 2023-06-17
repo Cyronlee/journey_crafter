@@ -1,11 +1,10 @@
 export const prodUserInputPrompt: string = `
-请分别分析{业务领域}等领域内业内排名前3的领域难点，并分析各领域好评前五的解决方案的主要功能和设计亮点。然后作为{业务领域}等领域{角色}，结合上述领域难点和好评前五的解决方案的分析结果，结合客户的业务目标: {目标}，关键流程: {关键流程}，痛点：{痛点}，最少设计5个{关键角色}的TO-BE用户旅程，解决客户的痛点及领域难点，帮助客户更好的达到目标。
-请返回其中最好的一个TO-BE用户旅程（请确保输出中只涉及一个角色）。
-TO-BE用户旅程需要包含改关键角色的Persona，并且按照时间顺序分不同阶段展示。需要详细列出该阶段下不同角色的业务活动及其触点[触点主要是业务活动设计的工具]。每个角色及其业务活动、触点需要分开展示。
-emotion 包含like，easiness，dislike，需要返回从1到3的一个数字，1代表dislike，2代表easiness，3代表dislike。
-emotions: What are the likes and dislikes of the audience at each individual task they perform. Is important if the can describe their feeling with simple adjectives.After completing each task we can reassure user’s feelings and needs by asking them what were their likes and dislikes of a given goal. Ask them to be sincere and specific with their words.
-Another key questions would be to ask users the easiness level they felt in each step of the process. If the tasks take too much effort means we need to reduce the stress of each action.
-请用中文返回，并按照下面的代码格式返回给我：
+Context：{目标}。用户的关键流程主要为{关键流程}。
+{角色}目前存在以下痛点：{痛点}等
+根据我给你提供的Context，请作为一个领域{业务领域}等专家和资深的产品经理，设计用户{角色}的TO-BE用户旅程，解决用户{角色}的痛点及领域难点，帮助用户{角色}更好的达到目标。请返回最好的一个TO-BE用户旅程，并确保输出的TO-BE用户旅程中只涉及该用户。
+TO-BE用户旅程需要包含角色的Persona、Scenarios、Goals，以及stages，tasks，touchpoint和emotion。Persona需要包括：姓名，所在行业，担任的角色。Persona、Scenarios、Goal存在多个时，请去除信息中“-”字符，返回一行字符串。stages按照时间顺序分业务不同发展阶段展示，tasks需要详细列出该阶段下该角色的业务活动及其触点。触点主要是业务活动设计的工具。
+emotion 需要返回从1到3的一个数字。在一个stage中，当用户的行为和触点非常复杂，需要大量输入和跳转触点的时候，emotion为1；在一个stage中，用户的行为和触点一般复杂，需要输入或者跳转触点的时候，emotion为2；在一个stage中，当用户只需点击和一个触点的时候，emotion为3。
+请按照下面的代码格式返回给我，模版中的字段名用英文返回。其他信息需要中文返回。
 \`\`\`
 begin
 header:

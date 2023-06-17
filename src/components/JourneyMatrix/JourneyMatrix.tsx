@@ -52,6 +52,8 @@ const options = {
       ticks: {
         display: false,
       },
+      min: 0,
+      max: 6
     },
   },
 };
@@ -79,8 +81,10 @@ const JourneyMatrix = (props: { stages: JourneyStage[] }) => {
       {
         label: "emotion",
         data: emotions,
-        fill: false,
-        borderColor: "rgba(75,192,192,1)",
+        fill: true,
+        borderColor: "#6B9E78",
+        backgroundColor: "#6B9E78",
+        pointRadius: 4,
         tension: 0.1,
       },
     ],

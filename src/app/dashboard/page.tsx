@@ -150,15 +150,22 @@ export default function ChatPage() {
               value={painPointInputValue}
               onChange={(e) => setPainPointInputValue(e.target.value)}
             />
-            <Button
-              w="84px"
-              size="sm"
-              colorScheme="purple"
-              onClick={handleGenerate}
-            >
-              Generate
-            </Button>
-            <Box overflow="scroll" minH="240px" w="960px" py="8px">
+            <Flex alignItems="center"
+                  justifyContent="center"
+                  direction="column">
+              <Button
+                w="129px"
+                h="48px"
+                size="sm"
+                color="white"
+                backgroundColor="#634F7D"
+                fontSize="20px"
+                onClick={handleGenerate}
+              >
+                Generate
+              </Button>
+            </Flex>
+            <Box minH="240px" w="960px" py="8px">
               <UserJourney userJourney={journey}></UserJourney>
             </Box>
           </VStack>

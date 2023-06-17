@@ -31,7 +31,7 @@ stages:
     tasks:
       - task: string
         touchpoint: string
-        emotion: number 1-5
+        emotion: number 1-3
   - stage: string
     tasks:
       - task: string

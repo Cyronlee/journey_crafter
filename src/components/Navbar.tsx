@@ -20,7 +20,7 @@ const Navbar = () => {
       w="100vw"
       h="64px"
       px="32px"
-      borderBottom="2px solid"
+      borderBottom="1px solid rgba(0, 0, 0, 0.08)"
       borderColor="gray.400"
       alignItems="center"
       gap="6px"

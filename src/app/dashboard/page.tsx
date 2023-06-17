@@ -216,7 +216,7 @@ export default function ChatPage() {
 
   function scrollToBottom() {
     window.scrollTo({
-      top: document.body.scrollHeight,
+      top: document.documentElement.scrollHeight,
       behavior: "smooth",
     });
   }
@@ -327,9 +327,10 @@ export default function ChatPage() {
               ref={scrollOutputRef}
               background="gray.50"
               whiteSpace="pre"
-              h="200px"
-              overflow="auto"
+              fontSize="14px"
+              h="180px"
               w="80vw"
+              overflow="auto"
               borderRadius="8px"
               borderColor="gray.400 !important"
               border="1px solid"

@@ -96,7 +96,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
       </Box>
       <Box w="60%" h="100%" borderLeft="1px solid" borderColor="gray.300">
         <HStack padding="20px 40px" gap="40px" alignItems="flex-start">
-          <Box w="200px">
+          <Box w="50%">
             <VStack>
               <Heading
                 w="100%"
@@ -123,7 +123,7 @@ export const JourneyHeaderWidget = (props: { header: JourneyHeader }) => {
               </Text>
             </VStack>
           </Box>
-          <Box w="240px">
+          <Box w="50%">
             <VStack>
               <Heading
                 w="100%"

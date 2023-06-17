@@ -52,7 +52,7 @@ const options = {
       ticks: {
         display: false,
       },
-      min: 1,
+      min: 0,
       max: 4,
     },
   },

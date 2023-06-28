@@ -13,11 +13,14 @@ import {
   useToast,
   VStack,
   IconButton,
+  useBoolean,
 } from "@chakra-ui/react";
 import { DownloadIcon } from "@chakra-ui/icons";
+import { BiExpand, BiCollapse } from "react-icons/bi";
 
 import { FiSun } from "react-icons/fi";
 import React, {
+  CSSProperties,
   useCallback,
   useEffect,
   useMemo,
@@ -59,8 +62,10 @@ export default function ChatPage() {
   const [buttonHoverStyle, setButtonHoverStyle] = useState({
     bg: "#7651A6",
   });
+  const [isFullscreen, toggleFullscreen] = useBoolean(false);
 
   const screenshotRef = useRef<HTMLDivElement>(null);
+  const fullscreenAreaRef = useRef<HTMLDivElement>(null);
   const scrollOutputRef: any = useRef();
 
   const [journeyData, setJourneyData] = useState<Journey>(
@@ -69,10 +74,23 @@ export default function ChatPage() {
   const [chatgptResponse, setChatgptResponse] = useState(
     "waiting for your operation..."
   );
+
   useEffect(() => {
     scrollOutputRef.current.scrollTop = scrollOutputRef.current.scrollHeight;
   }, [scrollOutputRef?.current?.scrollHeight]);
+
   const toast = useToast();
+
+  const handleExpand = () => {
+    console.log(isFullscreen);
+    if (isFullscreen) {
+      document.exitFullscreen();
+    } else {
+      fullscreenAreaRef.current &&
+        fullscreenAreaRef.current.requestFullscreen();
+    }
+    toggleFullscreen.toggle();
+  };
 
   const handleSaveImage = useCallback(() => {
     if (screenshotRef.current === null) {
@@ -223,6 +241,10 @@ export default function ChatPage() {
     });
   }
 
+  const fullscreenStyle: CSSProperties = {
+    padding: "32px",
+  };
+
   return (
     <Box>
       <Navbar></Navbar>
@@ -340,31 +362,45 @@ export default function ChatPage() {
             >
               {chatgptResponse}
             </Text>
-            <HStack>
-              <Text fontWeight="bold">User journey map</Text>
-              <IconButton
-                variant="outline"
-                borderWidth="0"
-                size="sm"
-                color="#60517A"
-                aria-label="Call Sage"
-                onClick={handleSaveImage}
-                fontSize="20px"
-                icon={<DownloadIcon />}
-              />
-              {/*<Button w="160px" size="sm">*/}
-              {/*  Save as png image*/}
-              {/*</Button>*/}
-            </HStack>
             <Box
-              minH="240px"
-              w="80vw"
-              py="8px"
-              p="0"
-              ref={screenshotRef}
+              style={isFullscreen ? fullscreenStyle : undefined}
+              ref={fullscreenAreaRef}
               bgColor="#FFF"
             >
-              <UserJourney userJourney={journeyData}></UserJourney>
+              <HStack>
+                <Text fontWeight="bold">User journey map</Text>
+                <IconButton
+                  variant="outline"
+                  borderWidth="0"
+                  size="sm"
+                  color="#60517A"
+                  aria-label="Call Sage"
+                  onClick={handleSaveImage}
+                  fontSize="20px"
+                  icon={<DownloadIcon />}
+                />
+                <IconButton
+                  variant="outline"
+                  borderWidth="0"
+                  size="sm"
+                  color="#60517A"
+                  aria-label="Call Sage"
+                  onClick={handleExpand}
+                  fontSize="20px"
+                  icon={isFullscreen ? <BiCollapse /> : <BiExpand />}
+                />
+                {isFullscreen ? "full" : "not full"}
+              </HStack>
+              <Box
+                minH="240px"
+                w="80vw"
+                py="8px"
+                p="0"
+                ref={screenshotRef}
+                bgColor="#FFF"
+              >
+                <UserJourney userJourney={journeyData}></UserJourney>
+              </Box>
             </Box>
           </VStack>
         </Box>

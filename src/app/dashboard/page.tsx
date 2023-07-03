@@ -23,7 +23,6 @@ import React, {
   CSSProperties,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -43,7 +42,7 @@ const input3PlaceHolder =
 const input4PlaceHolder =
   "Elaborate on scenarios, the role’s key steps and goal in this scenario.";
 const input5PlaceHolder = "The role’s pain point in this scenario.";
-const input6PlaceHolder = "The role’s pain point in this scenario.";
+const input6PlaceHolder = "The opportunities to improve this process.";
 
 export default function ChatPage() {
   // user inputs
@@ -160,8 +159,6 @@ export default function ChatPage() {
     return temp;
   };
 
-  const debouncedSetJourneyData = useMemo(() => debounced(setJourneyData), []);
-
   const callChatGPT = async (messages: ChatMessage[]) => {
     const response = await fetch("/api/generate", {
       headers: {
@@ -185,17 +182,13 @@ export default function ChatPage() {
       setChatgptResponse(responseMessage);
 
       // stream update data
-      updateJourneyData(responseMessage, false);
+      updateJourneyData(responseMessage);
     }
-    // final update
     console.log("generate finished");
-    setTimeout(() => {
-      updateJourneyData(responseMessage + "```", true);
-    }, 1500);
     stopLoading();
   };
 
-  const updateJourneyData = (chatgptResponse: string, isFinal: boolean) => {
+  const updateJourneyData = (chatgptResponse: string) => {
     let tempString = chatgptResponse;
     const headerIndex = tempString.indexOf("header:");
     if (headerIndex !== -1) {
@@ -208,11 +201,7 @@ export default function ChatPage() {
     console.log(tempString);
     if (isJourneyDataValid(tempString)) {
       const validJourneyData = new JourneyFileParser(tempString).getJourney();
-      if (isFinal) {
-        setJourneyData(validJourneyData);
-      } else {
-        debouncedSetJourneyData(validJourneyData);
-      }
+      setJourneyData(validJourneyData);
     }
   };
 

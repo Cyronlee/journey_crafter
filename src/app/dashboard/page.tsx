@@ -36,27 +36,23 @@ import { ChatMessage } from "@/types/chat";
 import { debounced } from "@/lib/debounce";
 import { toPng } from "html-to-image";
 
-const whoInputPlaceHolder = "I am a project manager.";
-const businessDomainPlaceHolder = "MQL、CRM、Salesforce, etc.";
-const wantToPlaceHolder =
-  "Digitize the MQL handover process based on the existing customized CRM to improve MQL conversion rates.";
-const keyBusinessPlaceHolder =
-  "1.Marketers identify MQLs and label them.\n2.Sales managers review and assign MQLs daily.\n3.Sales reps follow up with MQLs.\n4.Sales reps identify opportunities or return MQLs to marketing.";
-const painPointPlaceHolder =
-  "There are a lot of spam (unqualified) leads in MQLs; sales reps are unsure why a lead was identified as qualified by Marketers and how to follow-up; Marketers are unaware if sales reps have followed up with MQLs and what actions were taken.";
+const input1PlaceHolder = "Who’s to-be journey?";
+const input2PlaceHolder = "Where do we expect to enhance the journey?";
+const input3PlaceHolder =
+  "What value does this system provide? What features does it include?";
+const input4PlaceHolder =
+  "Elaborate on scenarios, the role’s key steps and goal in this scenario.";
+const input5PlaceHolder = "The role’s pain point in this scenario.";
+const input6PlaceHolder = "The role’s pain point in this scenario.";
 
 export default function ChatPage() {
   // user inputs
-  const [whoInputValue, setWhoInputValue] = useState(whoInputPlaceHolder);
-  const [businessDomainInputValue, setBusinessDomainInputValue] = useState(
-    businessDomainPlaceHolder
-  );
-  const [wantToInputValue, setWantToInputValue] = useState(wantToPlaceHolder);
-  const [keyBusinessInputValue, setKeyBusinessInputValue] = useState(
-    keyBusinessPlaceHolder
-  );
-  const [painPointInputValue, setPainPointInputValue] =
-    useState(painPointPlaceHolder);
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
+  const [input3, setInput3] = useState("");
+  const [input4, setInput4] = useState("");
+  const [input5, setInput5] = useState("");
+  const [input6, setInput6] = useState("");
 
   const [isLoading, setIsLoadingValue] = useState(false);
   const [buttonHoverStyle, setButtonHoverStyle] = useState({
@@ -111,11 +107,12 @@ export default function ChatPage() {
 
   const handleGenerate = () => {
     if (
-      whoInputValue.trim() === "" ||
-      businessDomainInputValue.trim() === "" ||
-      wantToInputValue.trim() === "" ||
-      keyBusinessInputValue.trim() === "" ||
-      painPointInputValue.trim() === ""
+      input1.trim() === "" ||
+      input2.trim() === "" ||
+      input3.trim() === "" ||
+      input4.trim() === "" ||
+      input5.trim() === "" ||
+      input6.trim() === ""
     ) {
       toast({
         title: "Please enter the all fields",
@@ -128,11 +125,12 @@ export default function ChatPage() {
     scrollToBottom();
     const userInputs = generateUserInputs(
       prodUserInputPrompt,
-      whoInputValue,
-      businessDomainInputValue,
-      wantToInputValue,
-      keyBusinessInputValue,
-      painPointInputValue
+      input1,
+      input2,
+      input3,
+      input4,
+      input5,
+      input6
     );
 
     console.log("user inputs:");
@@ -145,18 +143,20 @@ export default function ChatPage() {
   };
   const generateUserInputs = (
     prompt: string,
-    whoInputValue: string,
-    businessDomainInputValue: string,
-    wantToInputValue: string,
-    keyBusinessInputValue: string,
-    painPointInputValue: string
+    input1: string,
+    input2: string,
+    input3: string,
+    input4: string,
+    input5: string,
+    input6: string
   ) => {
     let temp = prompt;
-    temp = temp.replaceAll("{业务领域}", businessDomainInputValue);
-    temp = temp.replaceAll("{角色}", whoInputValue);
-    temp = temp.replaceAll("{目标}", wantToInputValue);
-    temp = temp.replaceAll("{关键流程}", keyBusinessInputValue);
-    temp = temp.replaceAll("{痛点}", painPointInputValue);
+    temp = temp.replaceAll("{Role}", input1);
+    temp = temp.replaceAll("{System}", input2);
+    temp = temp.replaceAll("{System_Brief}", input3);
+    temp = temp.replaceAll("{Scenario}", input4);
+    temp = temp.replaceAll("{Pain_Point}", input5);
+    temp = temp.replaceAll("{Opportunities}", input6);
     return temp;
   };
 
@@ -266,64 +266,76 @@ export default function ChatPage() {
               </Text>
             </Flex>
             <Text fontSize="14px" fontWeight="bold">
-              Who
+              Role
             </Text>
             <Textarea
               borderColor="gray.400"
-              placeholder={whoInputPlaceHolder}
-              value={whoInputValue}
+              placeholder={input1PlaceHolder}
+              value={input1}
               fontSize="14px"
               minH="1.5rem"
               isDisabled={isLoading}
-              onChange={(e) => setWhoInputValue(e.target.value)}
+              onChange={(e) => setInput1(e.target.value)}
             />
             <Text fontSize="14px" fontWeight="bold">
-              Business domain
+              System
             </Text>
             <Textarea
               borderColor="gray.400"
-              placeholder={businessDomainPlaceHolder}
-              value={businessDomainInputValue}
+              placeholder={input2PlaceHolder}
+              value={input2}
               fontSize="14px"
               minH="1.5rem"
               isDisabled={isLoading}
-              onChange={(e) => setBusinessDomainInputValue(e.target.value)}
+              onChange={(e) => setInput2(e.target.value)}
             />
             <Text fontSize="14px" fontWeight="bold">
-              I want to
+              System Brief
             </Text>
             <Textarea
               borderColor="gray.400"
-              placeholder={wantToPlaceHolder}
-              value={wantToInputValue}
+              placeholder={input3PlaceHolder}
+              value={input3}
               fontSize="14px"
               minH="1.5rem"
               isDisabled={isLoading}
-              onChange={(e) => setWantToInputValue(e.target.value)}
+              onChange={(e) => setInput3(e.target.value)}
             />
             <Text fontSize="14px" fontWeight="bold">
-              Key business process
+              Scenario
             </Text>
             <Textarea
               borderColor="gray.400"
-              placeholder={keyBusinessPlaceHolder}
-              value={keyBusinessInputValue}
+              placeholder={input4PlaceHolder}
+              value={input4}
               fontSize="14px"
               minH="6rem"
               isDisabled={isLoading}
-              onChange={(e) => setKeyBusinessInputValue(e.target.value)}
+              onChange={(e) => setInput4(e.target.value)}
             />
             <Text fontSize="14px" fontWeight="bold">
-              Pain points
+              Pain Points
             </Text>
             <Textarea
               borderColor="gray.400"
-              placeholder={painPointPlaceHolder}
-              value={painPointInputValue}
+              placeholder={input5PlaceHolder}
+              value={input5}
               fontSize="14px"
               minH="4rem"
               isDisabled={isLoading}
-              onChange={(e) => setPainPointInputValue(e.target.value)}
+              onChange={(e) => setInput5(e.target.value)}
+            />
+            <Text fontSize="14px" fontWeight="bold">
+              Opportunities
+            </Text>
+            <Textarea
+              borderColor="gray.400"
+              placeholder={input6PlaceHolder}
+              value={input6}
+              fontSize="14px"
+              minH="4rem"
+              isDisabled={isLoading}
+              onChange={(e) => setInput6(e.target.value)}
             />
             <Flex
               alignItems="center"

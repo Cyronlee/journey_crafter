@@ -185,6 +185,9 @@ export default function ChatPage() {
       updateJourneyData(responseMessage);
     }
     console.log("generate finished");
+    setTimeout(() => {
+      updateJourneyData(responseMessage);
+    }, 1500);
     stopLoading();
   };
 
@@ -394,7 +397,7 @@ export default function ChatPage() {
               </HStack>
               <Box
                 minH="240px"
-                w="80vw"
+                w="100%"
                 py="8px"
                 p="0"
                 ref={screenshotRef}

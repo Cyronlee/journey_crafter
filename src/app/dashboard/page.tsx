@@ -247,7 +247,6 @@ export default function ChatPage() {
 
   return (
     <Box>
-      <Navbar></Navbar>
       <Container px="0" maxW="80vw" centerContent marginBottom="50px">
         <Box px="8px" color="black">
           <VStack align="stretch">

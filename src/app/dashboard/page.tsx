@@ -345,22 +345,33 @@ export default function ChatPage() {
                 Generate
               </Button>
             </Flex>
-            <Text fontWeight="bold">AI response</Text>
-            <Text
-              ref={scrollOutputRef}
-              background="gray.50"
-              whiteSpace="pre"
-              fontSize="14px"
-              h="180px"
-              w="80vw"
-              overflow="auto"
-              borderRadius="8px"
-              borderColor="gray.400 !important"
-              border="1px solid"
-              p="8px 16px"
-            >
-              {chatgptResponse}
-            </Text>
+            <Text fontWeight="bold">AI response (editable)</Text>
+            <Textarea
+                ref={scrollOutputRef}
+                whiteSpace="pre"
+                background="gray.50"
+                h="256px"
+                border="1px solid"
+                p="8px 16px"
+                borderColor="gray.400"
+                value={chatgptResponse}
+                onChange={(e) => setChatgptResponse(e.target.value)}
+            />
+            {/*<Text*/}
+            {/*  ref={scrollOutputRef}*/}
+            {/*  background="gray.50"*/}
+            {/*  whiteSpace="pre"*/}
+            {/*  fontSize="14px"*/}
+            {/*  h="180px"*/}
+            {/*  w="80vw"*/}
+            {/*  overflow="auto"*/}
+            {/*  borderRadius="8px"*/}
+            {/*  borderColor="gray.400 !important"*/}
+            {/*  border="1px solid"*/}
+            {/*  p="8px 16px"*/}
+            {/*>*/}
+            {/*  {chatgptResponse}*/}
+            {/*</Text>*/}
             <Box
               style={isFullscreen ? fullscreenStyle : undefined}
               ref={fullscreenAreaRef}

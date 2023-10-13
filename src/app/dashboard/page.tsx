@@ -72,7 +72,7 @@ export default function ChatPage() {
     new JourneyFileParser(prodJourneyExampleData).getJourney()
   );
   const [chatgptResponse, setChatgptResponse] = useState(
-    "waiting for your operation..."
+    prodJourneyExampleData
   );
 
   useEffect(() => {

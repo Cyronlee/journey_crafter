@@ -347,15 +347,18 @@ export default function ChatPage() {
             </Flex>
             <Text fontWeight="bold">AI response (editable)</Text>
             <Textarea
-                ref={scrollOutputRef}
-                whiteSpace="pre"
-                background="gray.50"
-                h="256px"
-                border="1px solid"
-                p="8px 16px"
-                borderColor="gray.400"
-                value={chatgptResponse}
-                onChange={(e) => setChatgptResponse(e.target.value)}
+              ref={scrollOutputRef}
+              whiteSpace="pre"
+              background="gray.50"
+              h="256px"
+              border="1px solid"
+              p="8px 16px"
+              borderColor="gray.400"
+              value={chatgptResponse}
+              onChange={(e) => {
+                setChatgptResponse(e.target.value);
+                updateJourneyData(e.target.value, true);
+              }}
             />
             {/*<Text*/}
             {/*  ref={scrollOutputRef}*/}

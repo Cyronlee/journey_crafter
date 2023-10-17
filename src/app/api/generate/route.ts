@@ -6,6 +6,8 @@ import {
   ReconnectInterval,
 } from "eventsource-parser";
 
+export const runtime = "edge";
+
 export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY as string;
   const chatCompletionEndpoint = process.env.CHAT_COMPLETION_ENDPOINT as string;
@@ -57,7 +59,7 @@ export async function POST(req: NextRequest) {
           console.log("----");
           // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
           if (data === "[DONE]" || data.includes('"finish_reason":"stop"')) {
-            console.log("event done")
+            console.log("event done");
             controller.close();
             return;
           }

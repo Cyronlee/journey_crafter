@@ -1,4 +1,4 @@
-import type { ChatMessage } from '@/types/chat';
+import type { ChatMessage } from "@/types/chat";
 
 export const generateRequestBody = (
   apiKey: string,
@@ -10,7 +10,7 @@ export const generateRequestBody = (
   },
   method: "POST",
   body: JSON.stringify({
-    model: "gpt-3.5-turbo",
+    model: process.env.MODEL,
     messages,
     temperature: 0.6,
     stream: true,

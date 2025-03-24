@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     },
     method: "POST",
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
+      model: process.env.MODEL,
       messages: finalMessages,
       temperature: 0.8,
       stream: true,

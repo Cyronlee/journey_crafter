@@ -1,13 +1,13 @@
-// TODO 注意！通过这几个关键词来填充下方的最终用户输入
-const rule = ["{业务领域}", "{角色}", "{目标}", "{关键流程}", "{痛点}"];
+// Note: These keywords will be replaced in the final user input below
+const rule = ["{businessDomain}", "{role}", "{goal}", "{keyProcess}", "{painPoints}"];
 
 export const prodUserInputPrompt: string = `
-Context：{目标}。用户的关键流程主要为{关键流程}。
-{角色}目前存在以下痛点：{痛点}等
-根据我给你提供的Context，请作为一个领域{业务领域}等专家和资深的产品经理，设计用户{角色}的TO-BE用户旅程，解决用户{角色}的痛点及领域难点，帮助用户{角色}更好的达到目标。请返回最好的一个TO-BE用户旅程，并确保输出的TO-BE用户旅程中只涉及该用户。
-TO-BE用户旅程需要包含角色的Persona、Scenarios、Goals，以及stages，tasks，touchpoint和emotion。Persona需要包括：姓名，所在行业，担任的角色。Persona、Scenarios、Goal存在多个时，请去除信息中“-”字符，返回一行字符串。stages按照时间顺序分业务不同发展阶段展示，tasks需要详细列出该阶段下该角色的业务活动及其触点。触点主要是业务活动设计的工具。
-emotion 需要返回从1到3的一个数字。在一个stage中，当用户的行为和触点非常复杂，需要大量输入和跳转触点的时候，emotion为1；在一个stage中，用户的行为和触点一般复杂，需要输入或者跳转触点的时候，emotion为2；在一个stage中，当用户只需点击和一个触点的时候，emotion为3。
-请按照下面的代码格式返回给我，模版中的字段名用英文返回。其他信息需要中文返回。
+Context: {goal}. The user's key process is mainly {keyProcess}.
+{role} currently has the following pain points: {painPoints}, etc.
+Based on the Context I provided, as a {businessDomain} domain expert and senior product manager, design a TO-BE user journey for {role}, solving the pain points and domain challenges of {role}, helping {role} better achieve their goals. Please return the best TO-BE user journey, and ensure that the output TO-BE user journey only involves this user.
+The TO-BE user journey needs to include the role's Persona, Scenarios, Goals, as well as stages, tasks, touchpoints, and emotions. Persona needs to include: name, industry, and role. When there are multiple Personas, Scenarios, or Goals, please remove the "-" character and return them as a single line string. Stages should be displayed in chronological order according to different business development stages. Tasks need to list in detail the business activities and their touchpoints at this stage for this role. Touchpoints mainly refer to the tools designed for business activities.
+Emotion needs to return a number from 1 to 3. In a stage, when user behavior and touchpoints are very complex, requiring a lot of input and jumping between touchpoints, the emotion is 1; in a stage, when user behavior and touchpoints are moderately complex, requiring some input or jumping between touchpoints, the emotion is 2; in a stage, when the user only needs to click and use one touchpoint, the emotion is 3.
+Please return it to me in the following code format, with field names in English. Other information should be returned in English.
 \`\`\`
 begin
 header:

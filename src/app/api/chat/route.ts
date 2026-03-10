@@ -1,83 +1,54 @@
-import { ChatMessage } from '@/types/chat';
-import { NextRequest, NextResponse } from 'next/server';
-import { createParser, ParsedEvent, ReconnectInterval, } from 'eventsource-parser';
+import { ChatMessage } from "@/types/chat";
+import { NextRequest } from "next/server";
+
+export const runtime = "edge";
+
+// Mock streaming chat response
+const mockChatResponse = `I'd be happy to help you create a user journey map! Based on your inputs, I'll design a comprehensive TO-BE journey that addresses your pain points and business goals.
+
+Let me analyze your requirements:
+- **Role**: You're a product manager looking to streamline processes
+- **Domain**: SaaS product management with focus on data-driven decisions
+- **Key Pain Points**: Difficulty prioritizing features, misalignment with stakeholders, lengthy planning cycles
+
+Here's a tailored user journey that addresses these challenges:
+
+The journey starts with **Data Collection** where you gather user feedback from multiple sources like surveys, support tickets, and app reviews. This ensures decisions are grounded in real user needs.
+
+Next is **Analysis & Prioritization** where you use frameworks like RICE scoring to objectively evaluate features. This removes guesswork and helps focus on high-impact work.
+
+Then comes **Stakeholder Alignment** where you present your roadmap visually and collect feedback. This ensures everyone is on the same page before development begins.
+
+Finally, **Implementation Planning** breaks down approved features into actionable sprints with clear requirements.
+
+This journey should help you:
+- Make more confident prioritization decisions
+- Reduce time spent in meetings
+- Improve stakeholder satisfaction
+- Ship features faster
+
+Would you like me to elaborate on any specific stage or suggest tools that could support this workflow?`;
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.OPENAI_API_KEY as string;
-  const chatCompletionEndpoint = process.env.CHAT_COMPLETION_ENDPOINT as string;
-  const azureHeader = {
-    ...(apiKey && new RegExp(/azure\.com/i).test(chatCompletionEndpoint)
-      ? { "api-key": apiKey }
-      : {}),
-  };
+  // Parse the request but we don't need it for mock data
+  await req.json() as ChatMessage[];
 
-  const messages = (await req.json()) as ChatMessage[];
-
-  const requestBody = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-      ...azureHeader,
-    },
-    method: "POST",
-    body: JSON.stringify({
-      model: process.env.MODEL,
-      messages,
-      temperature: 0.8,
-      stream: true,
-    }),
-  };
-  let response: Response = await fetch(chatCompletionEndpoint, requestBody);
-
-  if (!response?.ok) {
-    let errorMessage = `Status: ${response?.status}, body: ${JSON.stringify(
-      response?.body
-    )}`;
-    console.error(errorMessage);
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
-  }
-
-  const textDecoder = new TextDecoder();
   const textEncoder = new TextEncoder();
 
-  let counter = 0;
+  // Split the mock response into words to simulate streaming
+  const words = mockChatResponse.split(/(\s+)/);
+
   const stream = new ReadableStream({
     async start(controller) {
-      // callback
-      function onParse(event: ParsedEvent | ReconnectInterval) {
-        if (event.type === "event") {
-          const data = event.data;
-          console.log(data);
-          console.log("----");
-          // https://beta.openai.com/docs/api-reference/completions/create#completions/create-stream
-          if (data === "[DONE]") {
-            controller.close();
-            return;
-          }
-          try {
-            const json = JSON.parse(data);
-            const text = json.choices[0]?.delta?.content || "";
-            if (counter < 2 && (text.match(/\n/) || []).length) {
-              // this is a prefix character (i.e., "\n\n"), do nothing
-              return;
-            }
-            const queue = textEncoder.encode(text);
-            controller.enqueue(queue);
-            counter++;
-          } catch (e) {
-            // maybe parse error
-            controller.error(e);
-          }
-        }
-      }
+      // Send words with a small delay to simulate streaming
+      for (const word of words) {
+        const queue = textEncoder.encode(word);
+        controller.enqueue(queue);
 
-      // stream response (SSE) from OpenAI may be fragmented into multiple chunks
-      // this ensures we properly read chunks and invoke an event for each SSE event stream
-      const parser = createParser(onParse);
-      // https://web.dev/streams/#asynchronous-iteration
-      for await (const chunk of response.body as any) {
-        parser.feed(textDecoder.decode(chunk));
+        // Small delay to simulate typing effect (15-40ms per word)
+        await new Promise((resolve) => setTimeout(resolve, 25));
       }
+      controller.close();
     },
   });
 

@@ -152,11 +152,11 @@ export default function ChatPage() {
     painPointInputValue: string
   ) => {
     let temp = prompt;
-    temp = temp.replaceAll("{业务领域}", businessDomainInputValue);
-    temp = temp.replaceAll("{角色}", whoInputValue);
-    temp = temp.replaceAll("{目标}", wantToInputValue);
-    temp = temp.replaceAll("{关键流程}", keyBusinessInputValue);
-    temp = temp.replaceAll("{痛点}", painPointInputValue);
+    temp = temp.replaceAll("{businessDomain}", businessDomainInputValue);
+    temp = temp.replaceAll("{role}", whoInputValue);
+    temp = temp.replaceAll("{goal}", wantToInputValue);
+    temp = temp.replaceAll("{keyProcess}", keyBusinessInputValue);
+    temp = temp.replaceAll("{painPoints}", painPointInputValue);
     return temp;
   };
 

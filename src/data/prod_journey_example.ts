@@ -1,42 +1,42 @@
 export const prodJourneyExampleData = `
 header:
   role: Marketer
-  persona: (示例) Emma, 32岁，市场营销专员，工作5年，熟悉公司的业务和市场，但对Salesforce的使用还不够熟练。
-  scenario: (示例) 基于现有的定制化CRM来数字化MQL handover流程
-  goals: (示例) 简化MQL的识别和标记过程 - 提高MQL转化率 - 让销售和市场团队更好地协作
+  persona: (Example) Emma, 32 years old, marketing specialist with 5 years of experience, familiar with company business and market, but not yet proficient with Salesforce.
+  scenario: (Example) Digitalizing the MQL handover process based on the existing customized CRM
+  goals: (Example) Simplify MQL identification and labeling process - Improve MQL conversion rate - Enable better collaboration between sales and marketing teams
 stages:
-  - stage: MQL识别
+  - stage: MQL Identification
     tasks:
-    - task: 识别MQL
-      touchpoint: 在Salesforce的dashboard中查看新的MQL，并根据预定义的标准判断是否合格。
+    - task: Identify MQL
+      touchpoint: View new MQLs in Salesforce dashboard and evaluate eligibility based on predefined criteria.
       emotion: 2
-    - task: 标记MQL
-      touchpoint: 将合格的MQL标记为“待进一步跟进”的状态，不合格的MQL标记为“无效”。
+    - task: Label MQL
+      touchpoint: Mark qualified MQLs as "pending follow-up" status, and unqualified MQLs as "invalid".
       emotion: 2
 
-  - stage: 销售退回的MQL分析
+  - stage: Sales Returned MQL Analysis
     tasks:
-    - task: 接收销售退回的MQL
-      touchpoint: 收到Salesforce的通知，通知中包含销售退回的MQL的详细信息。
+    - task: Receive Sales Returned MQL
+      touchpoint: Receive notification from Salesforce containing detailed information about sales returned MQLs.
       emotion: 2
-    - task: 分析MQL
-      touchpoint: 查看Salesforce中的MQL信息和历史记录，分析销售退回的MQL是否可以重新标记为待进一步跟进。
+    - task: Analyze MQL
+      touchpoint: Review MQL information and history in Salesforce, analyze if sales returned MQLs can be re-marked as pending follow-up.
       emotion: 2
 
-  - stage: 跟进协作
+  - stage: Follow-up Collaboration
     tasks:
-    - task: 了解销售的跟进情况
-      touchpoint: 在Salesforce中查看销售对MQL的跟进情况，包括跟进的结果和下一步的计划。
+    - task: Understand Sales Follow-up Status
+      touchpoint: Check sales follow-up status for MQLs in Salesforce, including results and next steps.
       emotion: 2
-    - task: 与销售协作
-      touchpoint: 如果MQL需要更多的市场营销措施，与销售协作共同制定下一步的营销计划；如果销售需要更多的信息来推进MQL，及时提供支持。
+    - task: Collaborate with Sales
+      touchpoint: If MQLs need more marketing efforts, collaborate with sales to develop next marketing plans; if sales needs more information to advance MQLs, provide timely support.
       emotion: 3
-  - stage: 反馈和优化
+  - stage: Feedback and Optimization
     tasks:
-    - task: 与销售和客户联系
-      touchpoint: 与销售和客户联系，了解MQL跟进的情况和结果，并听取销售和客户的反馈意见。
+    - task: Contact Sales and Customers
+      touchpoint: Contact sales and customers to understand MQL follow-up status and results, and listen to feedback from sales and customers.
       emotion: 2
-    - task: 优化MQL handover流程
-      touchpoint: 根据反馈意见，及时优化MQL handover的流程和标准，提高MQL转化率和市场营销的效率。
+    - task: Optimize MQL Handover Process
+      touchpoint: Based on feedback, promptly optimize MQL handover processes and standards to improve MQL conversion rates and marketing efficiency.
       emotion: 2
 `;
